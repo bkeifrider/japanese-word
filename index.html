@@ -3,31 +3,71 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#1d2538">
+<meta name="theme-color" content="#171b2b">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="日本語">
 <link rel="manifest" href="manifest.json">
 <title>日本語 • Daily Japanese</title>
 <style>
-:root{--bg:#171a24;--card:#242938;--ink:#f7f4ef;--muted:#c1c4cf;--accent:#e9a2b5;--accent2:#8da2d4;--line:#ffffff18}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink)}
+:root{
+ --bg:#171b2b;--bg2:#202941;--card:#283149;--ink:#fffdf9;--muted:#d7d9e2;
+ --accent:#f0a6bb;--accent2:#89a8dd;--accentText:#241923;--glow:#f0a6bb66;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink)}
 body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;overflow-x:hidden}
-.app{min-height:100vh;padding:max(20px,env(safe-area-inset-top)) 18px max(28px,env(safe-area-inset-bottom));background:radial-gradient(circle at 15% 0%,var(--accent)22,transparent 35%),radial-gradient(circle at 100% 100%,var(--accent2)20,transparent 38%),var(--bg)}
-.top{display:flex;justify-content:space-between;align-items:center;padding:5px 2px 18px}.brand{font-weight:800;letter-spacing:.12em;font-size:13px}.themeName{font-size:12px;color:var(--muted)}
-.card{min-height:69vh;border:1px solid var(--line);border-radius:32px;padding:25px 22px 22px;background:linear-gradient(145deg,#ffffff12,#00000018);backdrop-filter:blur(22px);box-shadow:0 25px 70px #0006;position:relative;overflow:hidden}
-.motif{position:absolute;right:-8px;top:-18px;font-size:120px;opacity:.16;transform:rotate(10deg)}
-.seal{position:absolute;right:18px;bottom:18px;border:1px solid #fff3;border-radius:50%;width:46px;height:46px;display:grid;place-items:center;color:#fff8;font-size:12px}
-.kicker{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
-.kanji{font-family:Georgia,"Times New Roman",serif;font-size:clamp(68px,20vw,108px);font-weight:700;line-height:1;margin-top:54px;text-shadow:0 5px 25px #0004}
-.kana{font-size:22px;margin-top:10px}.romaji{font-size:14px;color:var(--muted);margin-top:3px;font-style:italic}
-.english{font-size:30px;font-weight:800;margin-top:25px;max-width:90%}
-.example{margin-top:28px;border-top:1px solid var(--line);padding-top:18px}.jp{font-size:18px}.en{font-size:14px;color:var(--muted);margin-top:5px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}.actions button,.settings button{border:0;border-radius:15px;padding:14px;background:#fff12;color:var(--ink);font-size:15px;font-weight:750}.actions button:first-child{background:var(--ink);color:var(--bg)}
-.panel{margin-top:14px;border:1px solid var(--line);border-radius:18px;padding:14px;background:#00000018}.panel label{font-size:12px;color:var(--muted);display:block;margin-bottom:7px}.panel select{width:100%;border:0;border-radius:12px;padding:12px;background:#fff12;color:var(--ink);font-size:15px}
-.dots{display:flex;gap:6px;justify-content:center;margin:18px 0 0}.dot{width:6px;height:6px;border-radius:50%;background:#fff4}.dot.on{background:var(--accent)}
-.footer{text-align:center;color:var(--muted);font-size:11px;margin:15px 12px 0}
-.fade{animation:fade .45s ease}@keyframes fade{from{opacity:.1;transform:translateY(5px)}to{opacity:1;transform:none}}
+.app{
+ min-height:100vh;padding:max(18px,env(safe-area-inset-top)) 16px max(28px,env(safe-area-inset-bottom));
+ background:
+ radial-gradient(circle at 8% 4%,var(--accent)55 0 9%,transparent 28%),
+ radial-gradient(circle at 96% 94%,var(--accent2)55 0 10%,transparent 31%),
+ linear-gradient(145deg,var(--bg),var(--bg2));
+ transition:background .55s ease;
+}
+.app:before,.app:after{content:"";position:fixed;pointer-events:none;border-radius:50%;filter:blur(4px);opacity:.18}
+.app:before{width:180px;height:180px;left:-85px;top:34%;background:var(--accent)}
+.app:after{width:220px;height:220px;right:-110px;top:16%;background:var(--accent2)}
+.top{display:flex;justify-content:space-between;align-items:center;padding:5px 3px 15px}
+.brand{font-weight:900;letter-spacing:.13em;font-size:13px}
+.themeName{font-size:12px;color:var(--muted);font-weight:700}
+.card{
+ min-height:74vh;border:1px solid #ffffff2b;border-radius:32px;padding:24px 20px 20px;
+ background:linear-gradient(145deg,#ffffff1c,#00000022),var(--card);
+ box-shadow:0 28px 75px #0008,0 0 45px var(--glow);
+ position:relative;overflow:hidden;transition:background .55s ease,box-shadow .55s ease;
+}
+.card:before{content:"";position:absolute;inset:-50% -30%;background:var(--pattern);opacity:.12;transform:rotate(-12deg);pointer-events:none}
+.card>*{position:relative}
+.motif{position:absolute!important;right:-4px;top:-27px;font-size:126px;line-height:1;opacity:.22;filter:drop-shadow(0 8px 20px #0006);transform:rotate(8deg);transition:.55s}
+.stamp{
+ position:absolute;right:18px;bottom:18px;width:54px;height:54px;border:2px solid #ffffff55;border-radius:50%;
+ display:grid;place-items:center;color:#fff9;font-family:Georgia,serif;font-size:15px;transform:rotate(-8deg);
+}
+.kicker{font-size:12px;color:var(--muted);letter-spacing:.09em;text-transform:uppercase;font-weight:800}
+.kanji{font-family:Georgia,"Times New Roman",serif;font-size:clamp(70px,20vw,112px);font-weight:700;line-height:1;margin-top:53px;text-shadow:0 7px 28px #0008}
+.kana{font-size:22px;margin-top:10px;color:#fff}
+.romaji{font-size:15px;color:var(--muted);margin-top:4px;font-style:italic}
+.english{font-size:30px;line-height:1.12;font-weight:900;margin-top:24px;max-width:92%;color:#fff}
+.example{margin-top:27px;border-top:1px solid #ffffff2b;padding-top:17px}
+.jp{font-size:18px;color:#fff}.en{font-size:14px;color:var(--muted);margin-top:5px}
+.voice-label{margin-top:20px;font-size:11px;letter-spacing:.08em;color:var(--muted);font-weight:800}
+.voice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+button{border:0;border-radius:14px;padding:13px 7px;background:#ffffffea;color:#151722;font-size:13px;font-weight:850;min-height:48px;box-shadow:0 5px 16px #0003}
+button:active{transform:scale(.98)}
+button.primary{background:var(--accent);color:var(--accentText)}
+.voice.active{outline:2px solid #fff;outline-offset:2px;background:var(--accent);color:var(--accentText)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
+.actions button:first-child{background:#fff;color:#161923}
+.actions button:last-child{background:#ffffff18;color:#fff;border:1px solid #ffffff2b}
+.panel{margin-top:12px;border:1px solid #ffffff2b;border-radius:17px;padding:13px;background:#0000001c}
+.panel label{font-size:11px;color:var(--muted);display:block;margin-bottom:7px;font-weight:800;letter-spacing:.08em}
+.panel select{width:100%;border:0;border-radius:11px;padding:12px;background:#fff;color:#161923;font-size:15px;font-weight:650}
+.dots{display:flex;gap:5px;justify-content:center;margin:17px 0 0;flex-wrap:wrap;max-width:270px;margin-left:auto;margin-right:auto}
+.dot{width:6px;height:6px;border-radius:50%;background:#fff4}.dot.on{background:var(--accent);box-shadow:0 0 9px var(--accent)}
+.footer{text-align:center;color:var(--muted);font-size:11px;margin:13px 12px 0}
+.fade{animation:fade .48s ease}@keyframes fade{from{opacity:.05;transform:translateY(8px) scale(.99)}to{opacity:1;transform:none}}
+@media(min-width:700px){.app{max-width:680px;margin:auto}.card{min-height:700px}}
 </style>
 </head>
 <body>
@@ -41,25 +81,62 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sa
     <div class="romaji" id="romaji"></div>
     <div class="english" id="english"></div>
     <div class="example"><div class="jp" id="example"></div><div class="en" id="exampleEn"></div></div>
-    <div class="actions"><button onclick="nextWord()">Next word</button><button onclick="speak()">🔊 Hear</button></div>
-    <div class="panel"><label>WORD ROTATION</label><select id="interval" onchange="saveSettings()"><option value="1">Every hour</option><option value="2">Every 2 hours</option><option value="4" selected>Every 4 hours</option><option value="6">Every 6 hours</option><option value="12">Every 12 hours</option></select></div>
-    <div class="dots" id="dots"></div><div class="seal">日<br>本</div>
+
+    <div class="voice-label">PRONUNCIATION</div>
+    <div class="voice-grid">
+      <button class="voice active" data-mode="regular" onclick="speak('regular')">Normal</button>
+      <button class="voice" data-mode="slow" onclick="speak('slow')">½ Speed</button>
+      <button class="voice" data-mode="syllable" onclick="speak('syllable')">Syllable</button>
+    </div>
+
+    <div class="actions">
+      <button class="primary" onclick="nextWord()">Next word</button>
+      <button onclick="speak(currentMode)">🔊 Hear again</button>
+    </div>
+
+    <div class="panel">
+      <label>WORD ROTATION</label>
+      <select id="interval" onchange="saveSettings()">
+        <option value="1">Every hour</option>
+        <option value="2">Every 2 hours</option>
+        <option value="4" selected>Every 4 hours</option>
+        <option value="6">Every 6 hours</option>
+        <option value="12">Every 12 hours</option>
+      </select>
+    </div>
+
+    <div class="dots" id="dots"></div>
+    <div class="stamp" id="stamp">桜</div>
   </section>
-  <div class="footer">Words and themes rotate automatically. Tap “Next word” anytime.</div>
+  <div class="footer">Each new word also brings a new Japanese scene.</div>
 </div>
+
 <script>
 const themes=[
- {name:"Sakura",emoji:"🌸",bg:"#181b28",card:"#252a3a",a:"#e7a1b5",b:"#879ad0",seal:"桜"},
- {name:"Shinkansen",emoji:"🚅",bg:"#101923",card:"#1e2b38",a:"#e9d7a0",b:"#70a8c9",seal:"速"},
- {name:"Tanuki",emoji:"🦝",bg:"#211c18",card:"#342923",a:"#d99c72",b:"#8da47d",seal:"狸"},
- {name:"Inuyasha • Kagome",emoji:"⛩️",bg:"#171323",card:"#292039",a:"#b9a0e5",b:"#d98c9e",seal:"犬"},
- {name:"Fuji",emoji:"🗻",bg:"#111b26",card:"#223044",a:"#8fc0d4",b:"#f0c9c5",seal:"富士"},
- {name:"Matsuri",emoji:"🏮",bg:"#211317",card:"#382022",a:"#ef8c74",b:"#e5c17b",seal:"祭"},
- {name:"Kitsune",emoji:"🦊",bg:"#17151b",card:"#29242e",a:"#e6a26b",b:"#a993c5",seal:"狐"},
- {name:"Onsen",emoji:"♨️",bg:"#151c1d",card:"#26302e",a:"#a8d0c5",b:"#c995a5",seal:"湯"}
+{name:"Sakura",emoji:"🌸",bg:"#171b2b",bg2:"#2a3148",card:"#2b334b",a:"#f0a6bb",b:"#8ca8dd",seal:"桜",pattern:"radial-gradient(circle at 12% 30%,#fff 0 3px,transparent 4px),radial-gradient(circle at 28% 70%,#fff 0 4px,transparent 5px),radial-gradient(circle at 85% 22%,#fff 0 3px,transparent 4px)"},
+{name:"Shinkansen",emoji:"🚅",bg:"#101923",bg2:"#263a4a",card:"#223444",a:"#e8d49c",b:"#70b3d2",seal:"速",pattern:"repeating-linear-gradient(15deg,transparent 0 16px,#ffffff12 17px 18px)"},
+{name:"Tanuki",emoji:"🦝",bg:"#211b17",bg2:"#403025",card:"#3a2b23",a:"#dc9a6d",b:"#91a979",seal:"狸",pattern:"radial-gradient(circle,#fff2 0 2px,transparent 3px) 0 0/22px 22px"},
+{name:"Inuyasha • Kagome",emoji:"⛩️",bg:"#171323",bg2:"#342047",card:"#2b2140",a:"#bba0eb",b:"#dc91a2",seal:"犬",pattern:"linear-gradient(90deg,transparent 0 48%,#fff1 49% 51%,transparent 52%) 0 0/28px 28px"},
+{name:"Mount Fuji",emoji:"🗻",bg:"#101923",bg2:"#2a4158",card:"#263b50",a:"#91c8dc",b:"#f0c8c3",seal:"富士",pattern:"linear-gradient(135deg,#fff1 12%,transparent 12% 50%,#fff1 50% 52%,transparent 52%) 0 0/34px 34px"},
+{name:"Matsuri",emoji:"🏮",bg:"#241216",bg2:"#4a2024",card:"#3a2024",a:"#f18b72",b:"#e8c171",seal:"祭",pattern:"radial-gradient(circle at 50% 0,#f5d28c44 0 4px,transparent 5px) 0 0/30px 30px"},
+{name:"Kitsune",emoji:"🦊",bg:"#18151c",bg2:"#3a2530",card:"#30232e",a:"#eca66c",b:"#a999cf",seal:"狐",pattern:"radial-gradient(ellipse,#fff1 0 1px,transparent 2px) 0 0/18px 18px"},
+{name:"Onsen",emoji:"♨️",bg:"#131c1c",bg2:"#30413d",card:"#293b37",a:"#9fd2c6",b:"#d29baa",seal:"湯",pattern:"repeating-radial-gradient(ellipse at 50% 100%,transparent 0 14px,#fff1 15px 17px)"},
+{name:"Shibuya",emoji:"🌃",bg:"#0b0e18",bg2:"#293057",card:"#202745",a:"#ff5b9a",b:"#57d7ef",seal:"渋",pattern:"linear-gradient(90deg,#ff4c9920 1px,transparent 1px) 0 0/22px 22px,linear-gradient(#57d7ef18 1px,transparent 1px) 0 0/22px 22px"},
+{name:"Shinjuku",emoji:"🏙️",bg:"#0b0d12",bg2:"#3a2538",card:"#25212f",a:"#ff7a9a",b:"#8b9bff",seal:"新",pattern:"linear-gradient(90deg,#fff1 1px,transparent 1px) 0 0/16px 100%,linear-gradient(#fff1 1px,transparent 1px) 0 0/100% 16px"},
+{name:"Hokkaido",emoji:"❄️",bg:"#10202d",bg2:"#28445b",card:"#284154",a:"#bcecff",b:"#a6bde9",seal:"北",pattern:"radial-gradient(circle,#fff7 0 2px,transparent 3px) 0 0/26px 26px"},
+{name:"Kyoto",emoji:"🏯",bg:"#171617",bg2:"#3b3028",card:"#302923",a:"#d7aa73",b:"#9b8bc5",seal:"京",pattern:"repeating-linear-gradient(0deg,#fff1 0 1px,transparent 1px 14px)"},
+{name:"Osaka",emoji:"🐙",bg:"#17120f",bg2:"#4a281f",card:"#37231e",a:"#f0a35e",b:"#d94d59",seal:"大",pattern:"radial-gradient(circle,#fff1 0 3px,transparent 4px) 0 0/20px 20px"},
+{name:"Nara",emoji:"🦌",bg:"#151914",bg2:"#30432c",card:"#2c3b2a",a:"#b7d58b",b:"#d7ad82",seal:"奈",pattern:"radial-gradient(ellipse at 20% 100%,#fff1 0 30%,transparent 31%) 0 0/60px 60px"},
+{name:"Okinawa",emoji:"🌺",bg:"#071a22",bg2:"#15525a",card:"#174047",a:"#ff9ca7",b:"#67d7d0",seal:"沖",pattern:"radial-gradient(circle at 20% 30%,#ff9ca744 0 8px,transparent 9px),radial-gradient(circle at 70% 70%,#67d7d044 0 8px,transparent 9px)"},
+{name:"Arashiyama",emoji:"🎋",bg:"#0e1915",bg2:"#244132",card:"#213a2c",a:"#9dcc89",b:"#d0b07d",seal:"嵐",pattern:"repeating-linear-gradient(85deg,#fff1 0 2px,transparent 2px 23px)"},
+{name:"Gion",emoji:"🌙",bg:"#100f1a",bg2:"#332842",card:"#29213a",a:"#d7b1f0",b:"#e6a3bb",seal:"祇",pattern:"radial-gradient(circle,#fff4 0 1px,transparent 2px) 0 0/19px 19px"},
+{name:"Amore",emoji:"🌹",bg:"#1b1017",bg2:"#47222f",card:"#39202b",a:"#f2a1ae",b:"#c69bd8",seal:"愛",pattern:"radial-gradient(circle,#fff1 0 3px,transparent 4px) 0 0/27px 27px"},
+{name:"Tokyo Night",emoji:"🌌",bg:"#080a15",bg2:"#24205b",card:"#1d1d43",a:"#9d8cff",b:"#58d8ff",seal:"東京",pattern:"radial-gradient(circle,#fff5 0 1px,transparent 2px) 0 0/24px 24px"},
+{name:"Japanese Forest",emoji:"🌲",bg:"#0d1510",bg2:"#243b29",card:"#223528",a:"#9cc77e",b:"#b7d3b0",seal:"森",pattern:"linear-gradient(70deg,#fff1 1px,transparent 1px) 0 0/24px 24px"}
 ];
+
 const words=[
-["桜","さくら","sakura","cherry blossom","桜がきれいです。","The cherry blossoms are beautiful.","Nature"],
+["桜","さくら","sakura","cherry blossom","桜がきれいです。","The cherry blossoms are beautiful。","Nature"],
 ["猫","ねこ","neko","cat","猫がいます。","There is a cat.","Animals"],
 ["水","みず","mizu","water","水を飲みます。","I drink water.","Everyday"],
 ["電車","でんしゃ","densha","train","電車に乗ります。","I ride the train.","Travel"],
@@ -74,28 +151,165 @@ const words=[
 ["行く","いく","iku","to go","学校へ行きます。","I go to school.","Verbs"],
 ["見る","みる","miru","to see / watch","映画を見ます。","I watch a movie.","Verbs"],
 ["大丈夫","だいじょうぶ","daijoubu","okay / all right","大丈夫です。","I'm okay.","Useful"],
-["星","ほし","hoshi","star","星がきれいです。","The stars are beautiful.","Nature"]
+["星","ほし","hoshi","star","星がきれいです。","The stars are beautiful.","Nature"],
+["空","そら","sora","sky","空を見ます。","I look at the sky.","Nature"],
+["雨","あめ","ame","rain","雨が降っています。","It is raining.","Weather"],
+["雪","ゆき","yuki","snow","雪が白いです。","The snow is white.","Weather"],
+["火","ひ","hi","fire","火を消します。","I put out the fire.","Nature"],
+["海","うみ","umi","sea / ocean","海で泳ぎます。","I swim in the sea.","Nature"],
+["魚","さかな","sakana","fish","魚を食べます。","I eat fish.","Food"],
+["ご飯","ごはん","gohan","meal / rice","ご飯を食べます。","I eat a meal.","Food"],
+["お茶","おちゃ","ocha","tea","お茶を飲みます。","I drink tea.","Food"],
+["肉","にく","niku","meat","肉を焼きます。","I grill meat.","Food"],
+["野菜","やさい","yasai","vegetable","野菜を食べます。","I eat vegetables.","Food"],
+["果物","くだもの","kudamono","fruit","果物が好きです。","I like fruit.","Food"],
+["りんご","りんご","ringo","apple","りんごを食べます。","I eat an apple.","Food"],
+["朝","あさ","asa","morning","朝は早く起きます。","I wake up early in the morning.","Time"],
+["夜","よる","yoru","night","夜に勉強します。","I study at night.","Time"],
+["今","いま","ima","now","今は忙しいです。","I am busy now.","Time"],
+["明日","あした","ashita","tomorrow","明日行きます。","I will go tomorrow.","Time"],
+["昨日","きのう","kinou","yesterday","昨日は休みでした。","Yesterday was a day off.","Time"],
+["時間","じかん","jikan","time","時間があります。","I have time.","Time"],
+["人","ひと","hito","person","あの人は先生です。","That person is a teacher.","People"],
+["先生","せんせい","sensei","teacher","先生に聞きます。","I ask the teacher.","People"],
+["学生","がくせい","gakusei","student","学生です。","I am a student.","People"],
+["家族","かぞく","kazoku","family","家族と住んでいます。","I live with my family.","People"],
+["子供","こども","kodomo","child","子供が遊んでいます。","A child is playing.","People"],
+["友達","ともだち","tomodachi","friend","友達に会います。","I meet my friend.","People"],
+["名前","なまえ","namae","name","名前は何ですか。","What is your name?","Useful"],
+["日本","にほん","nihon","Japan","日本へ行きたいです。","I want to go to Japan.","Places"],
+["東京","とうきょう","toukyou","Tokyo","東京に住んでいます。","I live in Tokyo.","Places"],
+["京都","きょうと","kyouto","Kyoto","京都へ行きます。","I go to Kyoto.","Places"],
+["大阪","おおさか","oosaka","Osaka","大阪で食べます。","I eat in Osaka.","Places"],
+["北海道","ほっかいどう","hokkaidou","Hokkaido","北海道は広いです。","Hokkaido is spacious.","Places"],
+["沖縄","おきなわ","okinawa","Okinawa","沖縄へ行きたいです。","I want to go to Okinawa.","Places"],
+["駅","えき","eki","station","駅はどこですか。","Where is the station?","Travel"],
+["学校","がっこう","gakkou","school","学校へ行きます。","I go to school.","Places"],
+["ホテル","ホテル","hoteru","hotel","ホテルに泊まります。","I stay at a hotel.","Travel"],
+["空港","くうこう","kuukou","airport","空港へ行きます。","I go to the airport.","Travel"],
+["車","くるま","kuruma","car","車を運転します。","I drive a car.","Travel"],
+["自転車","じてんしゃ","jitensha","bicycle","自転車に乗ります。","I ride a bicycle.","Travel"],
+["歩く","あるく","aruku","to walk","駅まで歩きます。","I walk to the station.","Verbs"],
+["走る","はしる","hashiru","to run","公園で走ります。","I run in the park.","Verbs"],
+["読む","よむ","yomu","to read","本を読みます。","I read a book.","Verbs"],
+["書く","かく","kaku","to write","名前を書きます。","I write my name.","Verbs"],
+["聞く","きく","kiku","to listen / ask","音楽を聞きます。","I listen to music.","Verbs"],
+["話す","はなす","hanasu","to speak","日本語を話します。","I speak Japanese.","Verbs"],
+["買う","かう","kau","to buy","水を買います。","I buy water.","Verbs"],
+["使う","つかう","tsukau","to use","これを使います。","I use this.","Verbs"],
+["作る","つくる","tsukuru","to make","料理を作ります。","I make food.","Verbs"],
+["寝る","ねる","neru","to sleep","十一時に寝ます。","I go to sleep at eleven.","Verbs"],
+["起きる","おきる","okiru","to wake up","七時に起きます。","I wake up at seven.","Verbs"],
+["開ける","あける","akeru","to open","ドアを開けます。","I open the door.","Verbs"],
+["閉める","しめる","shimeru","to close","窓を閉めます。","I close the window.","Verbs"],
+["大きい","おおきい","ookii","big","大きい犬です。","It is a big dog.","Adjectives"],
+["小さい","ちいさい","chiisai","small","小さい猫です。","It is a small cat.","Adjectives"],
+["新しい","あたらしい","atarashii","new","新しい車です。","It is a new car.","Adjectives"],
+["古い","ふるい","furui","old","古い本です。","It is an old book.","Adjectives"],
+["暑い","あつい","atsui","hot","今日は暑いです。","It is hot today.","Adjectives"],
+["寒い","さむい","samui","cold","今日は寒いです。","It is cold today.","Adjectives"],
+["きれい","きれい","kirei","beautiful / clean","部屋がきれいです。","The room is clean.","Adjectives"],
+["楽しい","たのしい","tanoshii","fun / enjoyable","旅行は楽しいです。","Travel is fun.","Adjectives"],
+["おいしい","おいしい","oishii","delicious","ラーメンがおいしいです。","The ramen is delicious.","Food"],
+["かわいい","かわいい","kawaii","cute","猫がかわいいです。","The cat is cute.","Adjectives"],
+["早い","はやい","hayai","early / fast","電車が早いです。","The train is fast.","Adjectives"],
+["遅い","おそい","osoi","late / slow","今日は遅いです。","It is late today.","Adjectives"],
+["右","みぎ","migi","right","右に曲がります。","I turn right.","Directions"],
+["左","ひだり","hidari","left","左に曲がります。","I turn left.","Directions"],
+["上","うえ","ue","up / above","机の上です。","It is on the desk.","Directions"],
+["下","した","shita","down / below","椅子の下です。","It is under the chair.","Directions"],
+["中","なか","naka","inside","箱の中です。","It is inside the box.","Directions"],
+["外","そと","soto","outside","外へ行きます。","I go outside.","Directions"],
+["一緒","いっしょ","issho","together","一緒に行きましょう。","Let's go together.","Useful"],
+["本当","ほんとう","hontou","really / true","本当ですか。","Really?","Useful"],
+["分かる","わかる","wakaru","to understand","分かります。","I understand.","Verbs"],
+["分からない","わからない","wakaranai","don't understand","分かりません。","I don't understand.","Useful"],
+["お願いします","おねがいします","onegaishimasu","please","お願いします。","Please.","Essential"],
+["すみません","すみません","sumimasen","excuse me / sorry","すみません。","Excuse me / sorry.","Essential"],
+["こんにちは","こんにちは","konnichiwa","hello","こんにちは！","Hello!","Essential"],
+["こんばんは","こんばんは","konbanwa","good evening","こんばんは！","Good evening!","Essential"],
+["おやすみ","おやすみ","oyasumi","good night","おやすみなさい。","Good night.","Essential"],
+["またね","またね","matane","see you","またね！","See you!","Essential"],
+["乾杯","かんぱい","kanpai","cheers","乾杯！","Cheers!","Social"],
+["温泉","おんせん","onsen","hot spring","温泉に入りたいです。","I want to visit a hot spring.","Travel"]
 ];
-let index=Number(localStorage.jwIndex||0), themeIndex=Number(localStorage.jwTheme||0), hours=Number(localStorage.jwHours||4);
+
+let index=Number(localStorage.jwIndex||0);
+let themeIndex=Number(localStorage.jwTheme||0);
+let hours=Number(localStorage.jwHours||4);
+let currentMode=localStorage.jwVoice||"regular";
 document.getElementById("interval").value=hours;
+
 function applyTheme(){
  const t=themes[themeIndex%themes.length],r=document.documentElement;
- r.style.setProperty("--bg",t.bg);r.style.setProperty("--card",t.card);r.style.setProperty("--accent",t.a);r.style.setProperty("--accent2",t.b);
+ r.style.setProperty("--bg",t.bg);r.style.setProperty("--bg2",t.bg2);r.style.setProperty("--card",t.card);
+ r.style.setProperty("--accent",t.a);r.style.setProperty("--accent2",t.b);
+ r.style.setProperty("--glow",t.a+"66");r.style.setProperty("--pattern",t.pattern);
  document.getElementById("themeName").textContent=t.emoji+" "+t.name;
  document.getElementById("motif").textContent=t.emoji;
- document.querySelector(".seal").innerHTML=t.seal;
+ document.getElementById("stamp").textContent=t.seal;
 }
 function render(){
- const w=words[index%words.length]; const t=themes[themeIndex%themes.length];
- document.getElementById("card").classList.remove("fade");void document.getElementById("card").offsetWidth;document.getElementById("card").classList.add("fade");
- ["kanji","kana","romaji","english","example","exampleEn","category"].forEach((id,i)=>document.getElementById(id).textContent=w[i]);
+ const w=words[index%words.length];
+ const card=document.getElementById("card");
+ card.classList.remove("fade");void card.offsetWidth;card.classList.add("fade");
+ document.getElementById("kanji").textContent=w[0];
+ document.getElementById("kana").textContent=w[1];
+ document.getElementById("romaji").textContent=w[2];
+ document.getElementById("english").textContent=w[3];
+ document.getElementById("example").textContent=w[4];
+ document.getElementById("exampleEn").textContent=w[5];
+ document.getElementById("category").textContent=w[6];
  document.getElementById("dots").innerHTML=themes.map((_,i)=>`<span class="dot ${i===themeIndex%themes.length?"on":""}"></span>`).join("");
- applyTheme();localStorage.jwIndex=index;localStorage.jwTheme=themeIndex;localStorage.jwLast=Date.now();
+ document.querySelectorAll(".voice").forEach(b=>b.classList.toggle("active",b.dataset.mode===currentMode));
+ applyTheme();
+ localStorage.jwIndex=index;localStorage.jwTheme=themeIndex;localStorage.jwLast=Date.now();
 }
-function nextWord(){index=(index+1)%words.length;themeIndex=(themeIndex+1)%themes.length;render()}
-function saveSettings(){hours=Number(document.getElementById("interval").value);localStorage.jwHours=hours}
-function speak(){const u=new SpeechSynthesisUtterance(words[index][1]);u.lang="ja-JP";speechSynthesis.cancel();speechSynthesis.speak(u)}
-function auto(){if(Date.now()-Number(localStorage.jwLast||0)>=hours*3600000)nextWord()}
-render();setInterval(auto,30000);
+function nextWord(){
+ index=(index+1)%words.length;
+ themeIndex=(themeIndex+1)%themes.length;
+ render();
+}
+function saveSettings(){
+ hours=Number(document.getElementById("interval").value);
+ localStorage.jwHours=hours;
+}
+function setMode(mode){
+ currentMode=mode;localStorage.jwVoice=mode;
+ document.querySelectorAll(".voice").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));
+}
+function speak(mode){
+ setMode(mode);
+ const text=words[index][1];
+ speechSynthesis.cancel();
+ if(!("speechSynthesis" in window)){alert("Speech is not available in this browser.");return}
+ if(mode==="syllable"){
+   // Break kana into mora-like units and speak each with a short pause.
+   const units=[...text].reduce((arr,ch)=>{
+     const small="ゃゅょぁぃぅぇぉァィゥェォャュョ";
+     if(small.includes(ch)&&arr.length) arr[arr.length-1]+=ch; else arr.push(ch);
+     return arr;
+   },[]);
+   let i=0;
+   const play=()=>{
+     if(i>=units.length)return;
+     const u=new SpeechSynthesisUtterance(units[i++]);
+     u.lang="ja-JP";u.rate=.55;u.pitch=1;
+     u.onend=()=>setTimeout(play,170);
+     speechSynthesis.speak(u);
+   };
+   play();
+ } else {
+   const u=new SpeechSynthesisUtterance(text);
+   u.lang="ja-JP";u.rate=mode==="slow"?.45:.9;u.pitch=1;
+   speechSynthesis.speak(u);
+ }
+}
+function auto(){
+ if(Date.now()-Number(localStorage.jwLast||0)>=hours*3600000)nextWord();
+}
+render();
+setInterval(auto,30000);
 </script>
-</body></html>
+</body>
+</html>

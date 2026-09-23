@@ -21,7 +21,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sa
 .nav button.active{background:var(--accent);color:#1d1820;border-color:transparent}
 .card{position:relative;overflow:hidden;border:1px solid #ffffff2b;border-radius:30px;padding:23px 19px 20px;background:linear-gradient(145deg,#ffffff18,#00000025),var(--card);box-shadow:0 25px 75px #0009,0 0 42px var(--glow);transition:.5s}
 .card:before{content:"";position:absolute;inset:0;background:var(--scene);background-size:cover;background-position:center;opacity:.18;pointer-events:none}.scene{position:absolute!important;inset:0!important;overflow:hidden!important;opacity:.78;pointer-events:none;z-index:0}.scene svg{width:100%;height:100%;display:block}.card>.motif,.card>.kicker,.card>.mainchar,.card>.subchar,.card>.roman,.card>.meaning,.card>.example,.card>.voice-title,.card>.voice,.card>.actions,.card>.selectbox,.card>.bottom{z-index:2}
-.card>*{position:relative}.card>.scene{position:absolute!important;z-index:0}.motif{position:absolute!important;right:-8px;top:-23px;font-size:120px;line-height:1;opacity:.28;filter:drop-shadow(0 8px 18px #0008)}
+.card>*{position:relative}.card>.scene{position:absolute!important;z-index:0}.scene-badge{position:absolute!important;right:18px;top:18px;width:42px;height:42px;border:1px solid #ffffff42;border-radius:50%;display:grid;place-items:center;color:#fff9;font-family:Georgia,serif;font-size:13px;letter-spacing:.03em;background:#0003;backdrop-filter:blur(8px);z-index:3}
 .kicker{font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-weight:900}
 .mainchar{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:clamp(68px,21vw,112px);line-height:.95;margin-top:50px;text-shadow:0 7px 30px #0009}
 .subchar{font-size:22px;margin-top:10px}.roman{font-size:15px;color:var(--muted);font-style:italic;margin-top:4px}
@@ -34,7 +34,20 @@ button{font:inherit}.voice button,.action button,.flash-btn,.mode-btn,.submit{bo
 .bottom{margin-top:12px}.bottom button{width:100%;border:1px solid #ffffff33;border-radius:15px;background:#ffffff12;color:#fff;padding:14px;font-weight:900}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.stat{padding:10px;border:1px solid #ffffff20;border-radius:12px;text-align:center;background:#0002}.stat b{display:block;font-size:18px}.stat span{font-size:9px;color:var(--muted);font-weight:800}
 .hidden{display:none!important}.fade{animation:fade .42s ease}@keyframes fade{from{opacity:.05;transform:translateY(7px)}to{opacity:1;transform:none}}
-.flash{min-height:67vh;display:flex;flex-direction:column}.flash-top{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;font-weight:850}.flash-prompt{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;flex-direction:column;padding:35px 5px}.flash-kind{color:var(--muted);font-size:12px;font-weight:850}.flash-big{font-family:Georgia,serif;font-size:clamp(65px,20vw,110px);font-weight:800;margin:20px 0}.flash-answer{font-size:24px;font-weight:900}.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choices button{border:1px solid #ffffff2b;background:#ffffff12;color:#fff;border-radius:13px;padding:13px;font-weight:800;min-height:50px}.typebox{width:100%;padding:14px;border-radius:13px;border:1px solid #ffffff33;background:#fff;color:#161821;font-size:17px;text-align:center}.flash-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.right{background:#78c99b!important;color:#102017!important}.wrong{background:#df7e8d!important;color:#271116!important}.scene .glow{filter:blur(18px)}.scene .soft{opacity:.5}.scene .dim{opacity:.28}.small-note{text-align:center;color:var(--muted);font-size:10px;margin-top:10px}
+.flash{min-height:67vh;display:flex;flex-direction:column}.flash-top{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;font-weight:850}.flash-prompt{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;flex-direction:column;padding:35px 5px}.flash-kind{color:var(--muted);font-size:12px;font-weight:850}.flash-big{font-family:Georgia,serif;font-size:clamp(65px,20vw,110px);font-weight:800;margin:20px 0}.flash-answer{font-size:24px;font-weight:900}.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choices button{border:1px solid #ffffff2b;background:#ffffff12;color:#fff;border-radius:13px;padding:13px;font-weight:800;min-height:50px}.typebox{width:100%;padding:14px;border-radius:13px;border:1px solid #ffffff33;background:#fff;color:#161821;font-size:17px;text-align:center}.flash-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.right{background:#78c99b!important;color:#102017!important}.wrong{background:#df7e8d!important;color:#271116!important}.scene .glow{filter:blur(18px)}.scene .soft{opacity:.5}.scene .dim{opacity:.28}
+.scene{position:absolute!important;inset:0!important;overflow:hidden!important;pointer-events:none!important;z-index:0!important;opacity:.92}
+.scene svg{width:100%;height:100%;display:block}
+.scene .line{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.scene .fine{opacity:.55}
+.scene .wash{opacity:.18}
+.scene .grain{opacity:.08}
+.flash-feedback{margin-top:12px;border-radius:16px;padding:14px 15px;text-align:center;border:1px solid #ffffff26;background:#0003}
+.flash-feedback.correct{background:#2d8b5a33;border-color:#71d49b77}
+.flash-feedback.wrong{background:#a6424b33;border-color:#ef929a77}
+.feedback-title{font-size:18px;font-weight:900}
+.feedback-answer{margin-top:4px;color:#eef0f5;font-size:14px}
+.continue{width:100%;margin-top:9px;border:0;border-radius:13px;padding:13px;background:var(--accent);color:#211923;font-weight:900}
+.small-note{text-align:center;color:var(--muted);font-size:10px;margin-top:10px}
 .modal{position:fixed;inset:0;background:#0009;backdrop-filter:blur(12px);display:flex;align-items:flex-end;z-index:5}.sheet{width:100%;background:#202536;color:#fff;border-radius:25px 25px 0 0;padding:22px 18px max(22px,env(safe-area-inset-bottom));max-height:82vh;overflow:auto}.sheet h2{margin:0 0 10px}.sheet p{color:var(--muted);font-size:13px}.close{float:right;border:0;background:#ffffff18;color:#fff;border-radius:50%;width:36px;height:36px;font-size:18px}
 @media(min-width:700px){.app{max-width:700px;margin:auto}.card{min-height:680px}}
 </style>
@@ -51,7 +64,7 @@ button{font:inherit}.voice button,.action button,.flash-btn,.mode-btn,.submit{bo
   </div>
 
   <section id="learnCard" class="card"><div class="scene" id="scene" aria-hidden="true"></div>
-    <div class="motif" id="motif"></div>
+    <div class="scene-badge" id="sceneBadge"></div>
     <div class="kicker" id="category"></div>
     <div class="mainchar" id="mainchar"></div>
     <div class="subchar" id="subchar"></div>
@@ -225,79 +238,127 @@ document.getElementById("interval").value=hours;
 
 function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 function sceneSvg(i){
- const common=`<defs>
- <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="${themes[i][4]}" stop-opacity=".34"/><stop offset="1" stop-color="${themes[i][5]}" stop-opacity=".08"/></linearGradient>
- <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${themes[i][4]}" stop-opacity=".25"/><stop offset="1" stop-color="${themes[i][5]}" stop-opacity=".16"/></linearGradient>
- <filter id="blur"><feGaussianBlur stdDeviation="8"/></filter></defs>`;
- const bg=`<rect width="100%" height="100%" fill="url(#sky)"/>`;
- const horizon=`<path d="M0 72 Q25 60 50 72 T100 70 V100 H0Z" fill="url(#ground)"/>`;
- const stars=`<g fill="#fff" opacity=".72">${Array.from({length:18},(_,k)=>`<circle cx="${(k*37+9)%100}" cy="${8+(k*17)%48}" r="${k%4===0?1.3:.7}"/>`).join("")}</g>`;
+ const t=themes[i], accent=t[4], accent2=t[5];
+ const defs=`<defs>
+  <linearGradient id="wash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${accent}" stop-opacity=".20"/><stop offset="1" stop-color="${accent2}" stop-opacity=".04"/></linearGradient>
+  <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop stop-color="${accent2}" stop-opacity=".10"/><stop offset="1" stop-color="${accent2}" stop-opacity=".28"/></linearGradient>
+  <filter id="soft"><feGaussianBlur stdDeviation="7"/></filter>
+ </defs>`;
+ const base=`<rect width="100" height="100" fill="url(#wash)"/><rect y="72" width="100" height="28" fill="url(#ground)"/>`;
+ const horizon=`<path class="line fine" d="M0 76 C18 69 30 78 47 72 S77 67 100 75" stroke="${accent2}" stroke-width=".7"/>`;
+ const stars=`<g fill="#fff" opacity=".38">${[5,14,24,37,51,64,78,91].map((x,k)=>`<circle cx="${x}" cy="${12+(k*13)%42}" r="${k%3===0?.8:.45}"/>`).join("")}</g>`;
+
  switch(i){
-  case 0: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}${stars}
-   <g fill="${themes[i][4]}" opacity=".7"><circle cx="12" cy="24" r="3"/><circle cx="23" cy="31" r="2"/><circle cx="78" cy="18" r="3"/><circle cx="88" cy="34" r="2"/></g>
-   <path d="M0 82 Q18 55 38 82 M22 88 Q47 48 69 88 M62 86 Q77 57 100 83" fill="none" stroke="${themes[i][4]}" stroke-width="1.2" opacity=".5"/></svg>`;
-  case 1: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}
-   <path d="M0 75 L100 61" stroke="#fff" stroke-opacity=".25" stroke-width="3"/><path d="M0 84 L100 70" stroke="${themes[i][5]}" stroke-opacity=".45" stroke-width="1"/>
-   <g transform="translate(8 57)"><path d="M0 14 L18 7 L75 7 L88 14 L88 23 L0 23Z" fill="#f5f3ea" opacity=".88"/><path d="M19 7 L29 0 L72 0 L84 7Z" fill="#e8edf2"/><rect x="8" y="11" width="9" height="7" fill="${themes[i][5]}"/><rect x="31" y="11" width="10" height="7" fill="${themes[i][5]}"/><rect x="53" y="11" width="10" height="7" fill="${themes[i][5]}"/><path d="M0 23 H88" stroke="#d45c62" stroke-width="3"/></g></svg>`;
-  case 2: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}${stars}
-   <path d="M0 78 Q20 61 40 78 T80 77 T100 78 V100 H0Z" fill="#18281c" opacity=".7"/>
-   <g fill="#a8784e" opacity=".8"><circle cx="20" cy="74" r="7"/><circle cx="20" cy="64" r="3"/><circle cx="14" cy="65" r="3"/><circle cx="26" cy="65" r="3"/></g>
-   <path d="M18 78 Q19 62 22 50 M75 85 Q73 64 78 45" stroke="#7da16d" stroke-width="3" opacity=".55"/></svg>`;
-  case 3: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}${stars}
-   <path d="M10 100 V36 H18 V100 M7 42 H21 M10 52 H18 M82 100 V36 H90 V100 M79 42 H93 M82 52 H90" stroke="#c65b6d" stroke-width="2" opacity=".8"/>
-   <path d="M4 40 H25 M75 40 H96" stroke="#c65b6d" stroke-width="2"/><path d="M8 36 Q15 27 22 36 M79 36 Q86 27 93 36" fill="none" stroke="#e1a1b2" stroke-width="2"/></svg>`;
-  case 4: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}
-   <path d="M0 78 L23 56 L38 69 L58 42 L77 67 L100 51 V100 H0Z" fill="#dceaf1" opacity=".38"/>
-   <path d="M0 83 L23 60 L38 72 L58 47 L77 70 L100 55 V100 H0Z" fill="#22394b" opacity=".62"/>
-   <path d="M45 83 L58 47 L71 83" fill="#f8f8f5" opacity=".8"/></svg>`;
-  case 5: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}
-   <g opacity=".65"><path d="M8 78 V43 M4 49 H12 M5 57 H11" stroke="#ef9b74" stroke-width="2"/><path d="M88 78 V38 M84 44 H92 M85 52 H91" stroke="#ef9b74" stroke-width="2"/></g>
-   <circle cx="20" cy="20" r="8" fill="#f3c66e" opacity=".25"/><circle cx="80" cy="22" r="7" fill="#f3c66e" opacity=".2"/></svg>`;
-  case 6: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}${stars}
-   <g fill="${themes[i][4]}" opacity=".7"><path d="M13 78 L18 50 L23 78Z"/><path d="M76 78 L81 46 L86 78Z"/></g>
-   <g fill="${themes[i][5]}" opacity=".5"><circle cx="30" cy="72" r="3"/><circle cx="38" cy="78" r="2"/><circle cx="67" cy="70" r="3"/></g></svg>`;
-  case 7: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}
-   <ellipse cx="74" cy="20" rx="13" ry="6" fill="#fff" opacity=".16"/><ellipse cx="78" cy="27" rx="18" ry="7" fill="#fff" opacity=".12"/>
-   <path d="M0 82 Q30 70 60 82 T100 80" fill="none" stroke="${themes[i][4]}" stroke-width="3" opacity=".4"/>
-   <path d="M18 86 Q18 65 23 54 M28 87 Q28 68 32 58 M82 88 Q82 64 88 52" stroke="${themes[i][5]}" stroke-width="2" opacity=".45"/></svg>`;
-  case 8: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}
-   ${[8,22,38,57,74,91].map((x,k)=>`<rect x="${x}" y="${30+(k%3)*6}" width="${10+k%4*3}" height="${42-(k%3)*4}" rx="1" fill="${k%2?'#57d7ef':'#ff5b9a'}" opacity=".22"/>`).join("")}
-   <path d="M0 77 H100" stroke="#fff" stroke-opacity=".22" stroke-width="1"/><path d="M0 84 H100" stroke="#fff" stroke-opacity=".1" stroke-width="1"/></svg>`;
-  case 9: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}
-   ${[5,18,31,45,60,76,91].map((x,k)=>`<rect x="${x}" y="${20+(k%4)*7}" width="${9+k%3*4}" height="${58-(k%3)*5}" fill="${k%2?'#8d9cff':'#ff7d9b'}" opacity=".24"/>`).join("")}
-   <circle cx="72" cy="26" r="8" fill="#fff" opacity=".1"/></svg>`;
-  case 10: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}
-   <path d="M0 80 Q25 57 48 80 T100 78" fill="#cdeaff" opacity=".2"/>
-   ${Array.from({length:24},(_,k)=>`<circle cx="${(k*41)%100}" cy="${6+(k*23)%78}" r="${k%5===0?1.6:.7}" fill="#fff" opacity=".7"/>`).join("")}
-   <path d="M0 91 H100" stroke="#bcecff" stroke-opacity=".25"/></svg>`;
-  case 11: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}
-   <path d="M18 88 V52 M12 58 H24 M14 66 H22" stroke="${themes[i][4]}" stroke-width="2"/><path d="M82 88 V48 M76 54 H88 M78 63 H86" stroke="${themes[i][5]}" stroke-width="2"/>
-   <path d="M0 82 Q25 62 50 82 T100 80" fill="none" stroke="#d9b07c" stroke-width="2" opacity=".4"/></svg>`;
-  case 12: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}
-   <g stroke="#f0a05b" stroke-width="1.5" opacity=".45"><path d="M7 72 H93"/><path d="M10 72 V50 H90 V72"/><path d="M20 50 V38 H80 V50"/><path d="M30 38 V27 H70 V38"/></g>
-   <circle cx="78" cy="22" r="7" fill="#f0a05b" opacity=".16"/></svg>`;
-  case 13: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}
-   <g fill="#d5ae82" opacity=".5"><circle cx="23" cy="78" r="7"/><path d="M19 76 L14 68 M27 76 L32 68" stroke="#d5ae82" stroke-width="2"/></g>
-   <path d="M0 86 Q35 73 60 86 T100 84" fill="none" stroke="#b8d68d" stroke-width="3" opacity=".3"/></svg>`;
-  case 14: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}
-   <circle cx="77" cy="25" r="10" fill="#fff" opacity=".18"/><path d="M0 82 Q30 67 55 82 T100 80" fill="#69d8d0" opacity=".16"/>
-   <g fill="#ff9ea9" opacity=".6"><circle cx="20" cy="70" r="4"/><circle cx="27" cy="62" r="3"/><circle cx="86" cy="70" r="4"/></g></svg>`;
-  case 15: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}
-   ${[8,20,33,47,62,78,92].map((x,k)=>`<path d="M${x} 100 Q${x-8} 55 ${x+2} 5" fill="none" stroke="${k%2?'#d2b17d':'#9dcc89'}" stroke-width="${3+k%3}" opacity=".5"/>`).join("")}
-   <path d="M0 86 Q50 65 100 86" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="8"/></svg>`;
-  case 16: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}${stars}
-   <path d="M0 84 Q30 66 60 84 T100 82" fill="none" stroke="#d8b2f0" stroke-width="2" opacity=".35"/>
-   <g stroke="#e7a4bc" stroke-width="1.5" opacity=".45"><path d="M18 82 V53 M12 58 H24"/><path d="M82 82 V48 M76 53 H88"/></g></svg>`;
-  case 17: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}
-   <path d="M0 80 Q22 61 44 80 T100 78" fill="none" stroke="#f3a2b0" stroke-width="3" opacity=".3"/>
-   <g fill="#f3a2b0" opacity=".55"><circle cx="21" cy="29" r="4"/><circle cx="80" cy="22" r="4"/><circle cx="72" cy="55" r="3"/></g>
-   <path d="M20 29 Q50 10 80 22" fill="none" stroke="#c89bd9" stroke-width="1" opacity=".4"/></svg>`;
-  case 18: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}${stars}
-   <circle cx="78" cy="23" r="13" fill="#9e8cff" opacity=".12"/><path d="M0 85 Q35 62 70 84 T100 80" fill="none" stroke="#58d9ff" stroke-width="2" opacity=".25"/>
-   <g fill="#58d9ff" opacity=".45">${[12,28,46,66,88].map((x,k)=>`<rect x="${x}" y="${70-(k%3)*9}" width="2" height="${10+k%3*5}"/>`).join("")}</g></svg>`;
-  default: return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${common}${bg}
-   ${[8,20,34,49,65,81,94].map((x,k)=>`<path d="M${x} 100 Q${x-8} 72 ${x+3} 42" fill="none" stroke="${k%2?'#b7d3af':'#9cc77e'}" stroke-width="${2+k%3}" opacity=".5"/>`).join("")}
-   <path d="M0 88 Q50 68 100 88" fill="none" stroke="#fff" stroke-opacity=".1" stroke-width="12"/></svg>`;
+  // Sakura: branch + sparse petals, restrained.
+  case 0:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   <path class="line" d="M-5 20 C18 18 27 27 41 23 C54 20 57 10 72 8" stroke="#6e594e" stroke-width="1.8" opacity=".72"/>
+   <path class="line" d="M27 24 C30 15 34 10 40 4 M54 18 C59 12 65 10 70 7" stroke="#6e594e" stroke-width="1.1" opacity=".65"/>
+   <g fill="${accent}" opacity=".65"><path d="M35 11 q3-4 6 0 q-3 5-6 0"/><path d="M51 23 q3-4 6 0 q-3 5-6 0"/><path d="M70 8 q3-4 6 0 q-3 5-6 0"/><path d="M19 20 q3-4 6 0 q-3 5-6 0"/></g>
+   ${horizon}</svg>`;
+  // Shinkansen: understated train silhouette and rail geometry.
+  case 1:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   <path d="M0 84 L100 70" stroke="#ffffff2c" stroke-width="1"/><path d="M0 90 L100 76" stroke="${accent2}" stroke-opacity=".35" stroke-width=".7"/>
+   <g transform="translate(13 56)">
+    <path d="M0 16 C7 5 17 1 31 1 H66 C75 1 83 6 88 13 L88 20 H0Z" fill="#e9edf0" opacity=".88"/>
+    <path d="M30 1 H66 C74 1 81 5 86 11 H30Z" fill="#ffffff" opacity=".18"/>
+    <path d="M4 14 H87" stroke="${accent2}" stroke-width="1.2"/>
+    <g fill="${accent2}" opacity=".65"><rect x="13" y="7" width="9" height="5" rx="1"/><rect x="28" y="7" width="9" height="5" rx="1"/><rect x="43" y="7" width="9" height="5" rx="1"/><rect x="58" y="7" width="9" height="5" rx="1"/></g>
+    <circle cx="17" cy="21" r="3" fill="#1a222b"/><circle cx="73" cy="21" r="3" fill="#1a222b"/>
+   </g></svg>`;
+  // Tanuki: quiet woodland + moon, not a cartoon animal.
+  case 2:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}${stars}
+   <circle cx="77" cy="22" r="12" fill="#fff" opacity=".10"/>
+   <path d="M0 82 C14 67 24 74 34 80 C47 66 58 74 69 80 C81 67 91 72 100 80 V100 H0Z" fill="#111b16" opacity=".55"/>
+   <g stroke="${accent2}" stroke-opacity=".42" stroke-width="1.1"><path d="M13 91 V57 M9 64 H17 M42 93 V50 M37 58 H47 M86 92 V54 M81 62 H91"/></g>
+   <circle cx="27" cy="76" r="2.2" fill="${accent}" opacity=".5"/></svg>`;
+  // Inuyasha/Kagome: shrine architecture and sacred-jewel color, no character likeness.
+  case 3:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}${stars}
+   <g stroke="#d7a1ad" stroke-width="1.1" fill="none" opacity=".72">
+    <path d="M8 70 V38 H16 V70 M84 70 V38 H92 V70"/>
+    <path d="M3 39 H21 M79 39 H97 M0 35 Q50 22 100 35"/>
+    <path d="M14 35 L20 27 H80 L86 35"/>
+    <path d="M50 28 V67 M45 54 H55"/>
+   </g>
+   <circle cx="50" cy="44" r="4" fill="${accent}" opacity=".34"/></svg>`;
+  // Mount Fuji: classic layered mountain.
+  case 4:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   <path d="M0 82 L21 59 L35 72 L56 38 L77 70 L100 50 V100 H0Z" fill="${accent2}" opacity=".16"/>
+   <path d="M35 72 L56 38 L77 70 L68 62 L60 67 L55 51 L49 67 L43 61Z" fill="#fff" opacity=".45"/>
+   <path d="M0 86 Q30 73 58 84 T100 80" stroke="${accent}" stroke-width="1" fill="none" opacity=".35"/></svg>`;
+  // Matsuri: lantern string and paper streamers.
+  case 5:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   <path d="M0 23 Q25 39 50 22 T100 23" stroke="${accent2}" stroke-width=".7" fill="none" opacity=".5"/>
+   ${[10,30,50,70,90].map((x,k)=>`<g transform="translate(${x} ${24+(k%2)*4})"><path d="M0 0 V16" stroke="#fff" stroke-opacity=".22" stroke-width=".5"/><rect x="-4" y="13" width="8" height="11" rx="2" fill="${accent}" opacity=".42"/><path d="M-3 25 H3" stroke="${accent2}" stroke-width=".8"/></g>`).join("")}
+   <path d="M8 88 Q50 66 92 87" stroke="${accent2}" stroke-width=".7" fill="none" opacity=".35"/></svg>`;
+  // Kitsune: fox-like tail curves, moon, shrine forest.
+  case 6:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}${stars}
+   <circle cx="76" cy="20" r="11" fill="#fff" opacity=".10"/>
+   <path d="M15 90 C2 72 23 61 35 72 C47 82 33 92 25 82 C18 74 29 68 38 75" class="line" stroke="${accent}" stroke-width="2" opacity=".48"/>
+   <path d="M66 92 V53 M61 58 H71 M68 53 L74 47" class="line" stroke="${accent2}" stroke-width="1.3" opacity=".42"/></svg>`;
+  // Onsen: steam, bath house roof, water rings.
+  case 7:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   <path d="M22 75 V48 H78 V75 M15 48 H85 L78 40 H22Z" fill="#ffffff" opacity=".06" stroke="${accent2}" stroke-width=".9"/>
+   <path d="M34 39 C26 31 40 27 34 19 M51 40 C43 31 57 27 51 18 M68 40 C60 31 74 27 68 20" class="line" stroke="${accent}" stroke-width="1.3" opacity=".5"/>
+   <ellipse cx="50" cy="83" rx="36" ry="7" fill="none" stroke="${accent2}" stroke-width=".8" opacity=".4"/>
+   <ellipse cx="50" cy="83" rx="23" ry="4" fill="none" stroke="${accent2}" stroke-width=".6" opacity=".3"/></svg>`;
+  // Shibuya: crosswalk perspective + restrained neon blocks.
+  case 8:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   <g opacity=".35">${[8,23,39,57,75,91].map((x,k)=>`<rect x="${x}" y="${30-(k%3)*4}" width="${8+(k%2)*5}" height="${43+(k%3)*5}" fill="${k%2?'#59d8ef':'#ff5c9c'}"/>`).join("")}</g>
+   <g stroke="#fff" stroke-width="2" opacity=".18"><path d="M0 84 L100 71"/><path d="M0 91 L100 78"/><path d="M12 82 L35 80"/><path d="M43 78 L66 75"/><path d="M74 74 L96 71"/></g>
+   <circle cx="48" cy="25" r="5" fill="#fff" opacity=".10"/></svg>`;
+  // Shinjuku: layered towers and small lit windows.
+  case 9:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   ${[4,17,31,47,63,80].map((x,k)=>`<rect x="${x}" y="${24+(k%3)*5}" width="${10+k%4*3}" height="${56-(k%3)*6}" fill="${k%2?'#8d9cff':'#ff7d9b'}" opacity=".12" stroke="#fff" stroke-opacity=".10"/>`).join("")}
+   ${Array.from({length:20},(_,k)=>`<rect x="${(k*17)%92+3}" y="${38+(k*11)%36}" width="1.5" height="1" fill="#fff" opacity=".3"/>`).join("")}</svg>`;
+  // Hokkaido: snow field, firs, falling snow.
+  case 10:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   <path d="M0 71 Q30 57 53 70 T100 66 V100 H0Z" fill="#dff4ff" opacity=".16"/>
+   ${[13,25,83,92].map((x,k)=>`<path d="M${x} 78 L${x+6} 48 L${x+12} 78 M${x+2} 69 H${x+10} M${x+1} 62 H${x+11}" fill="none" stroke="${accent2}" stroke-width="1" opacity=".45"/>`).join("")}
+   ${Array.from({length:20},(_,k)=>`<circle cx="${(k*29)%100}" cy="${8+(k*19)%72}" r=".7" fill="#fff" opacity=".6"/>`).join("")}</svg>`;
+  // Kyoto: temple roof + maple leaves.
+  case 11:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   <path d="M17 72 V48 H83 V72 M10 48 H90 L78 39 H22Z M24 39 H76 L68 32 H32Z" fill="#ffffff" opacity=".06" stroke="${accent}" stroke-width=".8"/>
+   <path d="M13 25 Q23 15 32 25 M69 23 Q79 13 89 23" class="line" stroke="${accent}" stroke-width="1.1" opacity=".55"/>
+   <g fill="#c86e61" opacity=".42"><path d="M27 26 l4 3 -3 4 -3-3z"/><path d="M76 27 l4 3 -3 4 -3-3z"/><path d="M38 18 l4 3 -3 4 -3-3z"/></g></svg>`;
+  // Osaka: Dotonbori-like canal and food signage, abstract.
+  case 12:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   <path d="M0 80 Q35 68 70 79 T100 76" fill="none" stroke="${accent2}" stroke-width="7" opacity=".10"/>
+   ${[9,26,45,65,84].map((x,k)=>`<rect x="${x}" y="${34+(k%2)*6}" width="${11+(k%3)*3}" height="30" fill="${k%2?'#f0a05b':'#dc5260'}" opacity=".12" stroke="#fff" stroke-opacity=".1"/>`).join("")}
+   <circle cx="17" cy="48" r="4" fill="${accent}" opacity=".35"/></svg>`;
+  // Nara: quiet park + deer silhouette, elegant.
+  case 13:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   <path d="M0 80 Q20 67 39 80 T75 79 T100 77" fill="#b8d68d" opacity=".13"/>
+   <g fill="${accent2}" opacity=".42"><ellipse cx="69" cy="67" rx="7" ry="3"/><circle cx="75" cy="62" r="2.5"/><path d="M76 60 L78 56 M73 60 L71 56 M64 69 L60 76 M72 69 L75 76"/></g>
+   <path d="M21 86 V52 M16 59 H26" stroke="#b8d68d" stroke-width="1.2" opacity=".38"/></svg>`;
+  // Okinawa: sea horizon + coral/tropical leaves.
+  case 14:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   <path d="M0 66 Q25 60 50 66 T100 64" stroke="${accent2}" stroke-width="1.3" fill="none" opacity=".45"/>
+   <path d="M0 76 Q25 70 50 77 T100 74" stroke="${accent2}" stroke-width=".8" fill="none" opacity=".3"/>
+   <path d="M84 88 C79 68 88 54 92 43 M88 66 L78 58 M89 57 L98 49" class="line" stroke="${accent}" stroke-width="1.6" opacity=".45"/>
+   <circle cx="19" cy="26" r="10" fill="#fff" opacity=".08"/></svg>`;
+  // Arashiyama: bamboo grove with depth.
+  case 15:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   ${[8,22,36,51,67,82,96].map((x,k)=>`<path d="M${x} 100 C${x-3} 72 ${x+2} 42 ${x+(k%2?4:-4)} 0" stroke="${k%2?'#9dcc89':'#d2b17d'}" stroke-width="${1+(k%3)*.45}" fill="none" opacity="${.28+k%3*.08}"/>`).join("")}
+   <path d="M0 84 Q50 72 100 84" stroke="#fff" stroke-opacity=".10" stroke-width="8" fill="none"/></svg>`;
+  // Gion: machiya silhouette + lanterns at dusk.
+  case 16:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}${stars}
+   <path d="M9 74 V43 H31 V74 M37 74 V38 H60 V74 M66 74 V45 H91 V74" fill="#0003" stroke="${accent2}" stroke-width=".8" opacity=".6"/>
+   <g fill="${accent}" opacity=".4"><rect x="24" y="54" width="4" height="7" rx="1"/><rect x="74" y="54" width="4" height="7" rx="1"/></g>
+   <path d="M0 80 H100" stroke="${accent}" stroke-width=".7" opacity=".3"/></svg>`;
+  // Aomori/Amori: apple orchard, since Aomori is famous for apples.
+  case 17:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   <path d="M0 79 Q30 64 55 78 T100 75" fill="#f3a2b0" opacity=".08"/>
+   ${[15,34,55,76,92].map((x,k)=>`<g transform="translate(${x} 0)"><path d="M0 88 V58" stroke="#8d6d55" stroke-width="1.2"/><path d="M0 64 Q-6 55 -11 60 M0 68 Q7 58 11 63" stroke="#7eaa70" stroke-width="1" fill="none"/><circle cx="${k%2?4:-3}" cy="55" r="4" fill="#d95e66" opacity=".48"/></g>`).join("")}
+   <path d="M0 88 Q50 77 100 87" stroke="${accent2}" stroke-width="1" fill="none" opacity=".3"/></svg>`;
+  // Tokyo Night: refined skyline + moon, no generic starfield overload.
+  case 18:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}${stars}
+   <circle cx="77" cy="20" r="10" fill="#fff" opacity=".10"/>
+   ${[4,17,30,45,60,77,90].map((x,k)=>`<rect x="${x}" y="${30+(k%3)*4}" width="${9+k%3*4}" height="${53-(k%3)*4}" fill="${k%2?'#58d9ff':'#9e8cff'}" opacity=".10"/>`).join("")}
+   <path d="M0 84 H100" stroke="${accent2}" stroke-width=".8" opacity=".35"/></svg>`;
+  // Japanese Forest: layered pines + mist.
+  default:return `<svg viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${base}
+   ${[7,19,32,47,63,79,94].map((x,k)=>`<path d="M${x} 100 L${x+8} 38 L${x+16} 100 M${x+3} 76 H${x+13} M${x+1} 67 H${x+15} M${x} 58 H${x+16}" fill="none" stroke="${k%2?'#b7d3af':'#9cc77e'}" stroke-width="${1+(k%3)*.3}" opacity="${.22+k%3*.08}"/>`).join("")}
+   <path d="M0 74 Q25 66 50 74 T100 72" stroke="#fff" stroke-width="7" opacity=".05" fill="none"/></svg>`;
  }
 }
 function themeApply(){
@@ -306,7 +367,7 @@ function themeApply(){
  r.style.setProperty("--accent",t[4]);r.style.setProperty("--accent2",t[5]);r.style.setProperty("--glow",t[4]+"66");
  r.style.setProperty("--scene",`radial-gradient(circle at 85% 20%,${t[4]}55 0 2px,transparent 3px),radial-gradient(circle at 15% 70%,${t[5]}44 0 3px,transparent 4px)`);
  document.getElementById("themeName").textContent=t[1]+" "+t[0];
- document.getElementById("motif").textContent=t[1];document.getElementById("scene").innerHTML=sceneSvg(themeIndex%themes.length);
+ document.getElementById("sceneBadge").textContent=t[6];document.getElementById("scene").innerHTML=sceneSvg(themeIndex%themes.length);
 }
 function setSection(s){
  section=s;
@@ -350,28 +411,39 @@ function mark(id,correct){let s=stat(id);correct?s.r++:s.w++;stats[id]=s;localSt
 function renderFlash(){
  const data=flashData(),item=data[flashIndex%data.length],s=stat(item.id);
  const options=[item.a,...data.filter(x=>x.id!==item.id).sort(()=>Math.random()-.5).slice(0,3).map(x=>x.a)].sort(()=>Math.random()-.5);
- document.getElementById("flashCard").innerHTML=`
+ const f=document.getElementById("flashCard");
+ let feedback="";
+ if(flashAnswered){
+   const ok=flashAnswered.correct;
+   feedback=`<div class="flash-feedback ${ok?"correct":"wrong"}">
+     <div class="feedback-title">${ok?"✓ Correct!":"✕ Not quite"}</div>
+     <div class="feedback-answer">${ok?"":"Correct answer: "}<strong>${escapeHtml(item.a)}</strong></div>
+     <button class="continue" onclick="nextFlash()">Next card →</button>
+   </div>`;
+ }
+ f.innerHTML=`
  <div class="flash-top"><span>FLASHCARD • ${flashSet==="words"?"WORDS":flashSet.toUpperCase()}</span><span>✓ ${s.r} &nbsp; × ${s.w}</span></div>
- <div class="flash-prompt"><div class="flash-kind">What is this?</div><div class="flash-big">${item.q}</div><div class="flash-answer" id="flashAnswer">${flashAnswered?item.a:""}</div></div>
+ <div class="flash-prompt"><div class="flash-kind">What is this?</div><div class="flash-big">${escapeHtml(item.q)}</div>${flashAnswered?`<div class="flash-answer">${escapeHtml(item.a)}</div>`:""}</div>
  <div class="section-title">ANSWER MODE</div>
  <div class="voice" style="grid-template-columns:repeat(3,1fr)">
  <button class="${flashType==="choice"?"active":""}" onclick="setFlashType('choice')">Multiple choice</button>
  <button class="${flashType==="typing"?"active":""}" onclick="setFlashType('typing')">Typing</button>
  <button class="${flashType==="speech"?"active":""}" onclick="setFlashType('speech')">Speech</button></div>
- <div id="flashInput" style="margin-top:9px">${flashType==="choice"?`<div class="choices">${options.map(o=>`<button onclick="answerChoice('${escapeAttr(o)}','${escapeAttr(item.a)}','${item.id}')">${escapeHtml(o)}</button>`).join("")}</div>`:flashType==="typing"?`<input id="typeAnswer" class="typebox" placeholder="Type the answer"><button class="submit" style="width:100%;margin-top:8px" onclick="answerTyping('${item.id}','${escapeAttr(item.a)}')">Check answer</button>`:`<button class="submit" style="width:100%" onclick="speechAnswer('${item.id}','${escapeAttr(item.a)}')">🎙️ Speak your answer</button>`}</div>
- <div class="flash-actions"><button onclick="nextFlash()">Skip</button><button onclick="revealFlash('${item.id}')">Reveal</button></div>
+ <div id="flashInput" style="margin-top:9px">${flashAnswered?feedback:flashType==="choice"?`<div class="choices">${options.map(o=>`<button onclick="answerChoice('${escapeAttr(o)}','${escapeAttr(item.a)}','${item.id}')">${escapeHtml(o)}</button>`).join("")}</div>`:flashType==="typing"?`<input id="typeAnswer" class="typebox" placeholder="Type the answer"><button class="submit" style="width:100%;margin-top:8px" onclick="answerTyping('${item.id}','${escapeAttr(item.a)}')">Check answer</button>`:`<button class="submit" style="width:100%" onclick="speechAnswer('${item.id}','${escapeAttr(item.a)}')">🎙️ Speak your English answer</button>`}</div>
+ ${flashAnswered?"":`<div class="flash-actions"><button onclick="nextFlash()">Skip</button><button onclick="revealFlash('${item.id}')">Reveal answer</button></div>`}
+
  <div class="selectbox"><label>FLASHCARD SET</label><select onchange="flashSet=this.value;flashIndex=0;flashAnswered=false;renderFlash()"><option value="words" ${flashSet==="words"?"selected":""}>Japanese words</option><option value="hira" ${flashSet==="hira"?"selected":""}>Hiragana</option><option value="kata" ${flashSet==="kata"?"selected":""}>Katakana</option></select></div>
- <div class="small-note">Correct and wrong answers are saved on this device for each item.</div>`;
+ <div class="small-note">Your correct/incorrect count is saved separately for each item.</div>`;
 }
 function setFlashType(t){flashType=t;flashAnswered=false;renderFlash()}
-function revealFlash(id){flashAnswered=true;renderFlash()}
+function revealFlash(id){flashAnswered={correct:false,revealed:true};renderFlash()}
 function nextFlash(){flashIndex++;flashAnswered=false;themeIndex++;renderFlash();themeApply()}
-function answerChoice(choice,answer,id){let ok=choice===answer;mark(id,ok);flashAnswered=true;renderFlash();setTimeout(()=>nextFlash(),850)}
+function answerChoice(choice,answer,id){let ok=choice===answer;mark(id,ok);flashAnswered={correct:ok};renderFlash()}
 function answerTyping(id,answer){let v=(document.getElementById("typeAnswer").value||"").trim().toLowerCase();let ok=v===answer.toLowerCase();mark(id,ok);flashAnswered=true;renderFlash();setTimeout(()=>nextFlash(),850)}
 function speechAnswer(id,answer){
  if(!("webkitSpeechRecognition" in window)){alert("Speech recognition is not available in this browser. Try Typing or Multiple choice.");return}
- const R=window.webkitSpeechRecognition;const r=new R();r.lang="ja-JP";r.interimResults=false;r.maxAlternatives=3;
- r.onresult=e=>{let said=[...e.results[0]].map(x=>x.transcript.toLowerCase());let ok=said.some(x=>x.includes(answer.toLowerCase())||answer.toLowerCase().includes(x));mark(id,ok);flashAnswered=true;renderFlash();setTimeout(()=>nextFlash(),850)};
+ const R=window.webkitSpeechRecognition;const r=new R();r.lang="en-US";r.interimResults=false;r.maxAlternatives=3;
+ r.onresult=e=>{let said=[...e.results[0]].map(x=>x.transcript.toLowerCase());let ok=said.some(x=>x.includes(answer.toLowerCase())||answer.toLowerCase().includes(x));mark(id,ok);flashAnswered={correct:ok};renderFlash()};
  r.onerror=()=>alert("I couldn't hear that. Try again or use Typing.");r.start()
 }
 function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}

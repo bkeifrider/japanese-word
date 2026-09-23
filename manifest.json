@@ -1,0 +1,9 @@
+{
+  "name": "日本語 • Daily Japanese",
+  "short_name": "日本語",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#171a24",
+  "theme_color": "#e7a1b5",
+  "description": "A rotating Japanese vocabulary app with Japanese-themed scenes."
+}

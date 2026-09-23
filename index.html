@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1d2538">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="日本語">
+<link rel="manifest" href="manifest.json">
+<title>日本語 • Daily Japanese</title>
+<style>
+:root{--bg:#171a24;--card:#242938;--ink:#f7f4ef;--muted:#c1c4cf;--accent:#e9a2b5;--accent2:#8da2d4;--line:#ffffff18}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;overflow-x:hidden}
+.app{min-height:100vh;padding:max(20px,env(safe-area-inset-top)) 18px max(28px,env(safe-area-inset-bottom));background:radial-gradient(circle at 15% 0%,var(--accent)22,transparent 35%),radial-gradient(circle at 100% 100%,var(--accent2)20,transparent 38%),var(--bg)}
+.top{display:flex;justify-content:space-between;align-items:center;padding:5px 2px 18px}.brand{font-weight:800;letter-spacing:.12em;font-size:13px}.themeName{font-size:12px;color:var(--muted)}
+.card{min-height:69vh;border:1px solid var(--line);border-radius:32px;padding:25px 22px 22px;background:linear-gradient(145deg,#ffffff12,#00000018);backdrop-filter:blur(22px);box-shadow:0 25px 70px #0006;position:relative;overflow:hidden}
+.motif{position:absolute;right:-8px;top:-18px;font-size:120px;opacity:.16;transform:rotate(10deg)}
+.seal{position:absolute;right:18px;bottom:18px;border:1px solid #fff3;border-radius:50%;width:46px;height:46px;display:grid;place-items:center;color:#fff8;font-size:12px}
+.kicker{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.kanji{font-family:Georgia,"Times New Roman",serif;font-size:clamp(68px,20vw,108px);font-weight:700;line-height:1;margin-top:54px;text-shadow:0 5px 25px #0004}
+.kana{font-size:22px;margin-top:10px}.romaji{font-size:14px;color:var(--muted);margin-top:3px;font-style:italic}
+.english{font-size:30px;font-weight:800;margin-top:25px;max-width:90%}
+.example{margin-top:28px;border-top:1px solid var(--line);padding-top:18px}.jp{font-size:18px}.en{font-size:14px;color:var(--muted);margin-top:5px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}.actions button,.settings button{border:0;border-radius:15px;padding:14px;background:#fff12;color:var(--ink);font-size:15px;font-weight:750}.actions button:first-child{background:var(--ink);color:var(--bg)}
+.panel{margin-top:14px;border:1px solid var(--line);border-radius:18px;padding:14px;background:#00000018}.panel label{font-size:12px;color:var(--muted);display:block;margin-bottom:7px}.panel select{width:100%;border:0;border-radius:12px;padding:12px;background:#fff12;color:var(--ink);font-size:15px}
+.dots{display:flex;gap:6px;justify-content:center;margin:18px 0 0}.dot{width:6px;height:6px;border-radius:50%;background:#fff4}.dot.on{background:var(--accent)}
+.footer{text-align:center;color:var(--muted);font-size:11px;margin:15px 12px 0}
+.fade{animation:fade .45s ease}@keyframes fade{from{opacity:.1;transform:translateY(5px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div class="top"><div class="brand">日本語 • DAILY</div><div class="themeName" id="themeName"></div></div>
+  <section class="card" id="card">
+    <div class="motif" id="motif"></div>
+    <div class="kicker" id="category"></div>
+    <div class="kanji" id="kanji"></div>
+    <div class="kana" id="kana"></div>
+    <div class="romaji" id="romaji"></div>
+    <div class="english" id="english"></div>
+    <div class="example"><div class="jp" id="example"></div><div class="en" id="exampleEn"></div></div>
+    <div class="actions"><button onclick="nextWord()">Next word</button><button onclick="speak()">🔊 Hear</button></div>
+    <div class="panel"><label>WORD ROTATION</label><select id="interval" onchange="saveSettings()"><option value="1">Every hour</option><option value="2">Every 2 hours</option><option value="4" selected>Every 4 hours</option><option value="6">Every 6 hours</option><option value="12">Every 12 hours</option></select></div>
+    <div class="dots" id="dots"></div><div class="seal">日<br>本</div>
+  </section>
+  <div class="footer">Words and themes rotate automatically. Tap “Next word” anytime.</div>
+</div>
+<script>
+const themes=[
+ {name:"Sakura",emoji:"🌸",bg:"#181b28",card:"#252a3a",a:"#e7a1b5",b:"#879ad0",seal:"桜"},
+ {name:"Shinkansen",emoji:"🚅",bg:"#101923",card:"#1e2b38",a:"#e9d7a0",b:"#70a8c9",seal:"速"},
+ {name:"Tanuki",emoji:"🦝",bg:"#211c18",card:"#342923",a:"#d99c72",b:"#8da47d",seal:"狸"},
+ {name:"Inuyasha • Kagome",emoji:"⛩️",bg:"#171323",card:"#292039",a:"#b9a0e5",b:"#d98c9e",seal:"犬"},
+ {name:"Fuji",emoji:"🗻",bg:"#111b26",card:"#223044",a:"#8fc0d4",b:"#f0c9c5",seal:"富士"},
+ {name:"Matsuri",emoji:"🏮",bg:"#211317",card:"#382022",a:"#ef8c74",b:"#e5c17b",seal:"祭"},
+ {name:"Kitsune",emoji:"🦊",bg:"#17151b",card:"#29242e",a:"#e6a26b",b:"#a993c5",seal:"狐"},
+ {name:"Onsen",emoji:"♨️",bg:"#151c1d",card:"#26302e",a:"#a8d0c5",b:"#c995a5",seal:"湯"}
+];
+const words=[
+["桜","さくら","sakura","cherry blossom","桜がきれいです。","The cherry blossoms are beautiful.","Nature"],
+["猫","ねこ","neko","cat","猫がいます。","There is a cat.","Animals"],
+["水","みず","mizu","water","水を飲みます。","I drink water.","Everyday"],
+["電車","でんしゃ","densha","train","電車に乗ります。","I ride the train.","Travel"],
+["友達","ともだち","tomodachi","friend","友達と話します。","I talk with a friend.","People"],
+["食べる","たべる","taberu","to eat","りんごを食べます。","I eat an apple.","Verbs"],
+["家","いえ","ie","house / home","家に帰ります。","I go home.","Everyday"],
+["山","やま","yama","mountain","山が見えます。","I can see a mountain.","Nature"],
+["犬","いぬ","inu","dog","犬が走っています。","The dog is running.","Animals"],
+["好き","すき","suki","to like","日本が好きです。","I like Japan.","Useful"],
+["今日","きょう","kyou","today","今日はいい天気です。","The weather is nice today.","Time"],
+["ありがとう","ありがとう","arigatou","thank you","ありがとう！","Thank you!","Essential"],
+["行く","いく","iku","to go","学校へ行きます。","I go to school.","Verbs"],
+["見る","みる","miru","to see / watch","映画を見ます。","I watch a movie.","Verbs"],
+["大丈夫","だいじょうぶ","daijoubu","okay / all right","大丈夫です。","I'm okay.","Useful"],
+["星","ほし","hoshi","star","星がきれいです。","The stars are beautiful.","Nature"]
+];
+let index=Number(localStorage.jwIndex||0), themeIndex=Number(localStorage.jwTheme||0), hours=Number(localStorage.jwHours||4);
+document.getElementById("interval").value=hours;
+function applyTheme(){
+ const t=themes[themeIndex%themes.length],r=document.documentElement;
+ r.style.setProperty("--bg",t.bg);r.style.setProperty("--card",t.card);r.style.setProperty("--accent",t.a);r.style.setProperty("--accent2",t.b);
+ document.getElementById("themeName").textContent=t.emoji+" "+t.name;
+ document.getElementById("motif").textContent=t.emoji;
+ document.querySelector(".seal").innerHTML=t.seal;
+}
+function render(){
+ const w=words[index%words.length]; const t=themes[themeIndex%themes.length];
+ document.getElementById("card").classList.remove("fade");void document.getElementById("card").offsetWidth;document.getElementById("card").classList.add("fade");
+ ["kanji","kana","romaji","english","example","exampleEn","category"].forEach((id,i)=>document.getElementById(id).textContent=w[i]);
+ document.getElementById("dots").innerHTML=themes.map((_,i)=>`<span class="dot ${i===themeIndex%themes.length?"on":""}"></span>`).join("");
+ applyTheme();localStorage.jwIndex=index;localStorage.jwTheme=themeIndex;localStorage.jwLast=Date.now();
+}
+function nextWord(){index=(index+1)%words.length;themeIndex=(themeIndex+1)%themes.length;render()}
+function saveSettings(){hours=Number(document.getElementById("interval").value);localStorage.jwHours=hours}
+function speak(){const u=new SpeechSynthesisUtterance(words[index][1]);u.lang="ja-JP";speechSynthesis.cancel();speechSynthesis.speak(u)}
+function auto(){if(Date.now()-Number(localStorage.jwLast||0)>=hours*3600000)nextWord()}
+render();setInterval(auto,30000);
+</script>
+</body></html>

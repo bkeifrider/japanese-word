@@ -49,11 +49,11 @@ button{font:inherit}.voice button,.action button,.flash-btn,.mode-btn,.submit{bo
 .stats-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0 18px}
 .stats-summary>div{background:#ffffff0b;border:1px solid #ffffff12;border-radius:12px;padding:9px 5px;text-align:center}
 .stats-summary b{display:block;font-size:18px}.stats-summary span{display:block;color:var(--muted);font-size:9px;margin-top:3px}
-.stats-group{font-size:11px;letter-spacing:.12em;font-weight:900;color:var(--accent);text-transform:uppercase;padding:12px 0 6px}
+.stats-group{font-size:11px;letter-spacing:.12em;font-weight:900;color:var(--accent);text-transform:uppercase;padding:12px 0 6px}.stats-group span{float:right;font-size:9px;letter-spacing:.04em;color:var(--muted);text-transform:none}
 .stat-row{padding:10px 0;border-bottom:1px solid #ffffff12}.stat-name{display:flex;justify-content:space-between;gap:10px;align-items:center}.stat-name strong{font-size:13px}.stat-name span{font-size:10px;color:var(--muted)}
 .stat-counts{display:flex;gap:8px;margin-top:6px;font-size:10px}.stat-counts span{padding:4px 7px;border-radius:7px;background:#ffffff09}.stat-counts .correct{color:#9ce0b6}.stat-counts .wrong{color:#f0a5ad}
 .flash-listen{margin-top:7px}.hear-card{width:100%;border:1px solid #ffffff2b;background:#ffffff12;color:#fff;border-radius:12px;padding:11px;font-weight:850}.flash-feedback{margin-top:12px;border-radius:16px;padding:14px 15px;text-align:center;border:1px solid #ffffff26;background:#0003}
-.flash-feedback.correct{background:#2d8b5a33;border-color:#71d49b77}
+.flash-feedback.correct{background:#2d8b5a33;border-color:#71d49b77}.flash-feedback.revealed{background:#ffffff0d;border-color:#ffffff33}
 .flash-feedback.wrong{background:#a6424b33;border-color:#ef929a77}
 .feedback-title{font-size:18px;font-weight:900}
 .feedback-answer{margin-top:4px;color:#eef0f5;font-size:14px}
@@ -244,6 +244,7 @@ const kata=[
 ["ナ","na"],["ニ","ni"],["ヌ","nu"],["ネ","ne"],["ノ","no"],["ハ","ha"],["ヒ","hi"],["フ","fu"],["ヘ","he"],["ホ","ho"],
 ["マ","ma"],["ミ","mi"],["ム","mu"],["メ","me"],["モ","mo"],["ヤ","ya"],["ユ","yu"],["ヨ","yo"],["ラ","ra"],["リ","ri"],
 ["ル","ru"],["レ","re"],["ロ","ro"],["ワ","wa"],["ヲ","wo"],["ン","n"]
+];
 const numbers=[
 ["一","いち","ichi","1","いちばん","Number one.","Numbers"],
 ["二","に","ni","2","にばん","Number two.","Numbers"],
@@ -436,12 +437,12 @@ function renderLearn(){
  const simpleSection=(section==="hiragana"||section==="katakana");
  document.getElementById("example").textContent=simpleSection ? "" : (sentenceMode==="hiragana" ? toHiragana(ex) : ex);
  document.getElementById("exampleEn").textContent=simpleSection ? "" : en;
- document.querySelector(".sentence-tools").style.display=simpleSection ? "none" : "grid";
+ document.querySelector(".sentence-tools").style.display=(simpleSection ? "none" : "grid");
  document.querySelectorAll(".voice button").forEach(b=>{
    b.style.display=(simpleSection && b.dataset.mode==="syllable") ? "none" : "";
    b.classList.toggle("active",b.dataset.mode===currentVoice);
  });
- if(simpleSection && currentVoice==="syllable") currentVoice="slow";
+ if(simpleSection && currentVoice==="syllable"){currentVoice="slow";localStorage.jwVoice=currentVoice;}
  localStorage.jwVoice=currentVoice;
  localStorage.jwIndex=index;
  localStorage.jwIndex=index;localStorage.jwLast=Date.now();
@@ -476,11 +477,11 @@ function saveSettings(){hours=+document.getElementById("interval").value;localSt
 function speak(mode){
  currentVoice=mode;localStorage.jwVoice=mode;
  document.querySelectorAll(".voice button").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));
- let text=section==="words"?words[index%words.length][1]:(section==="hiragana"?hira[index%hira.length][0]:kata[index%kata.length][0]);
+ let text=section==="words"?words[index%words.length][1]:(section==="numbers"?numbers[index%numbers.length][1]:(section==="hiragana"?hira[index%hira.length][0]:kata[index%kata.length][0]));
  speechSynthesis.cancel();
  if(mode==="syllable"){
   [...text].forEach((ch,i)=>setTimeout(()=>{let u=new SpeechSynthesisUtterance(ch);u.lang="ja-JP";u.rate=.48;speechSynthesis.speak(u)},i*650));
- }else{let u=new SpeechSynthesisUtterance(text);u.lang="ja-JP";u.rate=mode==="slow"?.32:.82;speechSynthesis.speak(u)}
+ }else{let u=new SpeechSynthesisUtterance(text);u.lang="ja-JP";u.rate=mode==="slow"?.30:.82;speechSynthesis.speak(u)}
 }
 function auto(){if(section!=="flash"&&Date.now()-Number(localStorage.jwLast||0)>=hours*3600000)nextLearning()}
 
@@ -532,7 +533,7 @@ function setFlashType(t){flashType=t;flashAnswered=false;renderFlash()}
 function revealFlash(id){flashAnswered={correct:false,revealed:true};renderFlash()}
 function nextFlash(){flashIndex++;flashAnswered=false;themeIndex++;renderFlash();themeApply()}
 function answerChoice(choice,answer,id){let ok=choice===answer;mark(id,ok);flashAnswered={correct:ok};renderFlash()}
-function answerTyping(id,answer){let v=(document.getElementById("typeAnswer").value||"").trim().toLowerCase();let ok=v===answer.toLowerCase();mark(id,ok);flashAnswered=true;renderFlash();setTimeout(()=>nextFlash(),850)}
+function answerTyping(id,answer){let v=(document.getElementById("typeAnswer").value||"").trim().toLowerCase();let ok=v===answer.toLowerCase();mark(id,ok);flashAnswered={correct:ok};renderFlash()}
 function speechAnswer(id,answer){
  if(!("webkitSpeechRecognition" in window)){alert("Speech recognition is not available in this browser. Try Typing or Multiple choice.");return}
  const R=window.webkitSpeechRecognition;const r=new R();r.lang="en-US";r.interimResults=false;r.maxAlternatives=3;
@@ -547,7 +548,7 @@ function resetStats(){
 }
 function statLine(label,id){
  const s=stat(id),total=s.r+s.w,accuracy=total?Math.round((s.r/total)*100):0;
- return `<div class="stat-row"><div class="stat-name"><strong>${escapeHtml(label)}</strong><span>${total?accuracy+"% accuracy":"Not practiced"}</span></div><div class="stat-counts"><span class="correct">Correct <b>${s.r}</b></span><span class="wrong">Wrong <b>${s.w}</b></span></div></div>`;
+ return `<div class="stat-row"><div class="stat-name"><strong>${escapeHtml(label)}</strong><span>${total?accuracy+"% accuracy • "+total+" attempt"+(total===1?"":"s"):"Not practiced yet"}</span></div><div class="stat-counts"><span class="correct">✓ ${s.r} correct</span><span class="wrong">× ${s.w} wrong</span></div></div>`;
 }
 function openStats(){
  const all=[];
@@ -560,7 +561,7 @@ function openStats(){
  document.getElementById("statsText").innerHTML=`<div class="stats-summary"><div><b>${total}</b><span>Total attempts</span></div><div><b>${right}</b><span>Correct</span></div><div><b>${wrong}</b><span>Wrong</span></div><div><b>${accuracy}%</b><span>Accuracy</span></div></div>`;
  let out="",current="";
  all.forEach(x=>{
-   if(x.group!==current){current=x.group;out+=`<div class="stats-group">${current}</div>`}
+   if(x.group!==current){current=x.group;const practiced=all.filter(y=>y.group===current&&((stats[y.id]?.r||0)+(stats[y.id]?.w||0)>0)).length;const groupTotal=all.filter(y=>y.group===current).length;out+=`<div class="stats-group">${current}<span>${practiced}/${groupTotal} practiced</span></div>`}
    out+=statLine(x.label,x.id);
  });
  document.getElementById("statsList").innerHTML=out;

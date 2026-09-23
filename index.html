@@ -31,7 +31,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sa
 button{font:inherit}.voice button,.action button,.flash-btn,.mode-btn,.submit{border:0;border-radius:13px;padding:12px 7px;background:#fff;color:#171922;font-size:12px;font-weight:900;min-height:46px}.voice button.active{background:var(--accent);color:#241923;outline:2px solid #fff;outline-offset:1px}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.actions button:last-child{background:#ffffff18;color:#fff;border:1px solid #ffffff30}
 .selectbox{margin-top:11px;border:1px solid #ffffff2b;border-radius:16px;padding:12px;background:#0002}.selectbox label{font-size:10px;color:var(--muted);font-weight:900;letter-spacing:.1em;display:block;margin-bottom:7px}.selectbox select{width:100%;padding:11px;border-radius:11px;border:0;background:#fff;color:#161821;font-size:14px;font-weight:700}
-.bottom{margin-top:12px}.bottom button{width:100%;border:1px solid #ffffff33;border-radius:15px;background:#ffffff12;color:#fff;padding:14px;font-weight:900}
+.bottom{margin-top:12px}.bottom{display:grid;grid-template-columns:1fr auto;gap:8px}.bottom button{width:100%;border:1px solid #ffffff33;border-radius:15px;background:#ffffff12;color:#fff;padding:14px;font-weight:900}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.stat{padding:10px;border:1px solid #ffffff20;border-radius:12px;text-align:center;background:#0002}.stat b{display:block;font-size:18px}.stat span{font-size:9px;color:var(--muted);font-weight:800}
 .hidden{display:none!important}.fade{animation:fade .42s ease}@keyframes fade{from{opacity:.05;transform:translateY(7px)}to{opacity:1;transform:none}}
 .flash{min-height:67vh;display:flex;flex-direction:column}.flash-top{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;font-weight:850}.flash-prompt{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;flex-direction:column;padding:35px 5px}.flash-kind{color:var(--muted);font-size:12px;font-weight:850}.flash-big{font-family:Georgia,serif;font-size:clamp(65px,20vw,110px);font-weight:800;margin:20px 0}.flash-answer{font-size:24px;font-weight:900}.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choices button{border:1px solid #ffffff2b;background:#ffffff12;color:#fff;border-radius:13px;padding:13px;font-weight:800;min-height:50px}.typebox{width:100%;padding:14px;border-radius:13px;border:1px solid #ffffff33;background:#fff;color:#161821;font-size:17px;text-align:center}.flash-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.right{background:#78c99b!important;color:#102017!important}.wrong{background:#df7e8d!important;color:#271116!important}.scene .glow{filter:blur(18px)}.scene .soft{opacity:.5}.scene .dim{opacity:.28}
@@ -45,13 +45,20 @@ button{font:inherit}.voice button,.action button,.flash-btn,.mode-btn,.submit{bo
 .sentence-tools{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}
 .sentence-tools button{border:1px solid #ffffff28;background:#ffffff12;color:#fff;border-radius:11px;padding:9px 8px;font-size:11px;font-weight:850}
 .sentence-tools button:active{transform:scale(.98)}
+
+.stats-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0 18px}
+.stats-summary>div{background:#ffffff0b;border:1px solid #ffffff12;border-radius:12px;padding:9px 5px;text-align:center}
+.stats-summary b{display:block;font-size:18px}.stats-summary span{display:block;color:var(--muted);font-size:9px;margin-top:3px}
+.stats-group{font-size:11px;letter-spacing:.12em;font-weight:900;color:var(--accent);text-transform:uppercase;padding:12px 0 6px}
+.stat-row{padding:10px 0;border-bottom:1px solid #ffffff12}.stat-name{display:flex;justify-content:space-between;gap:10px;align-items:center}.stat-name strong{font-size:13px}.stat-name span{font-size:10px;color:var(--muted)}
+.stat-counts{display:flex;gap:8px;margin-top:6px;font-size:10px}.stat-counts span{padding:4px 7px;border-radius:7px;background:#ffffff09}.stat-counts .correct{color:#9ce0b6}.stat-counts .wrong{color:#f0a5ad}
 .flash-listen{margin-top:7px}.hear-card{width:100%;border:1px solid #ffffff2b;background:#ffffff12;color:#fff;border-radius:12px;padding:11px;font-weight:850}.flash-feedback{margin-top:12px;border-radius:16px;padding:14px 15px;text-align:center;border:1px solid #ffffff26;background:#0003}
 .flash-feedback.correct{background:#2d8b5a33;border-color:#71d49b77}
 .flash-feedback.wrong{background:#a6424b33;border-color:#ef929a77}
 .feedback-title{font-size:18px;font-weight:900}
 .feedback-answer{margin-top:4px;color:#eef0f5;font-size:14px}
 .continue{width:100%;margin-top:9px;border:0;border-radius:13px;padding:13px;background:var(--accent);color:#211923;font-weight:900}
-.small-note{text-align:center;color:var(--muted);font-size:10px;margin-top:10px}
+.reset-stats{background:#ffffff08!important;color:#f0a5ad!important;border-color:#f0a5ad33!important}.small-note{text-align:center;color:var(--muted);font-size:10px;margin-top:10px}
 .modal{position:fixed;inset:0;background:#0009;backdrop-filter:blur(12px);display:flex;align-items:flex-end;z-index:5}.sheet{width:100%;background:#202536;color:#fff;border-radius:25px 25px 0 0;padding:22px 18px max(22px,env(safe-area-inset-bottom));max-height:82vh;overflow:auto}.sheet h2{margin:0 0 10px}.sheet p{color:var(--muted);font-size:13px}.close{float:right;border:0;background:#ffffff18;color:#fff;border-radius:50%;width:36px;height:36px;font-size:18px}
 @media(min-width:700px){.app{max-width:700px;margin:auto}.card{min-height:680px}}
 </style>
@@ -64,6 +71,7 @@ button{font:inherit}.voice button,.action button,.flash-btn,.mode-btn,.submit{bo
     <button id="navWords" class="active" onclick="setSection('words')">Words</button>
     <button id="navHira" onclick="setSection('hiragana')">ひらがな</button>
     <button id="navKata" onclick="setSection('katakana')">カタカナ</button>
+    <button id="navNumbers" onclick="setSection('numbers')">Numbers</button>
     <button id="navFlash" onclick="setSection('flash')">Flashcards</button>
   </div>
 
@@ -89,10 +97,7 @@ button{font:inherit}.voice button,.action button,.flash-btn,.mode-btn,.submit{bo
       <button data-mode="slow" onclick="speak('slow')">▶ ½ Speed</button>
       <button data-mode="syllable" onclick="speak('syllable')">▶ Syllable</button>
     </div>
-    <div class="actions">
-      <button onclick="nextLearning()">Next</button>
-      <button onclick="speak(currentVoice)">🔊 Hear again</button>
-    </div>
+    <div class="actions"><button onclick="nextLearning()" style="grid-column:1/-1">Next</button></div>
     <div class="selectbox">
       <label>WORD ROTATION</label>
       <select id="interval" onchange="saveSettings()">
@@ -100,7 +105,7 @@ button{font:inherit}.voice button,.action button,.flash-btn,.mode-btn,.submit{bo
         <option value="4" selected>Every 4 hours</option><option value="6">Every 6 hours</option><option value="12">Every 12 hours</option>
       </select>
     </div>
-    <div class="bottom"><button onclick="openStats()">📊 My progress</button></div>
+    <div class="bottom"><button onclick="openStats()">📊 My progress</button><button onclick="resetStats()" class="reset-stats">Reset stats</button></div>
   </section>
 
   <section id="flashCard" class="card flash hidden"></section>
@@ -130,7 +135,7 @@ const themes=[
 ["Okinawa","🌺","#061a22","#15535a","#ff9ea9","#69d8d0","沖"],
 ["Arashiyama","🎋","#0c1812","#24412f","#9dcc89","#d2b17d","嵐"],
 ["Gion","🌙","#100e19","#352943","#d8b2f0","#e7a4bc","祇"],
-["Aomori","🍎","#1b0f16","#4a2230","#f3a2b0","#c89bd9","愛"],
+["Aomori","🍎","#1b0f16","#4a2230","#f3a2b0","#c89bd9","青"],
 ["Tokyo Night","🌌","#070912","#27215d","#9e8cff","#58d9ff","東京"],
 ["Japanese Forest","🌲","#0c150f","#29412d","#9cc77e","#b7d3af","森"]
 ];
@@ -239,6 +244,37 @@ const kata=[
 ["ナ","na"],["ニ","ni"],["ヌ","nu"],["ネ","ne"],["ノ","no"],["ハ","ha"],["ヒ","hi"],["フ","fu"],["ヘ","he"],["ホ","ho"],
 ["マ","ma"],["ミ","mi"],["ム","mu"],["メ","me"],["モ","mo"],["ヤ","ya"],["ユ","yu"],["ヨ","yo"],["ラ","ra"],["リ","ri"],
 ["ル","ru"],["レ","re"],["ロ","ro"],["ワ","wa"],["ヲ","wo"],["ン","n"]
+const numbers=[
+["一","いち","ichi","1","いちばん","Number one.","Numbers"],
+["二","に","ni","2","にばん","Number two.","Numbers"],
+["三","さん","san","3","さんばん","Number three.","Numbers"],
+["四","よん / し","yon / shi","4","よんばん","Number four.","Numbers"],
+["五","ご","go","5","ごばん","Number five.","Numbers"],
+["六","ろく","roku","6","ろくばん","Number six.","Numbers"],
+["七","なな / しち","nana / shichi","7","ななばん","Number seven.","Numbers"],
+["八","はち","hachi","8","はちばん","Number eight.","Numbers"],
+["九","きゅう / く","kyuu / ku","9","きゅうばん","Number nine.","Numbers"],
+["十","じゅう","juu","10","じゅうばん","Number ten.","Numbers"],
+["十一","じゅういち","juuichi","11","じゅういちばん","Number eleven.","Numbers"],
+["十二","じゅうに","juuni","12","じゅうにばん","Number twelve.","Numbers"],
+["十三","じゅうさん","juusan","13","じゅうさんばん","Number thirteen.","Numbers"],
+["十四","じゅうよん","juuyon","14","じゅうよんばん","Number fourteen.","Numbers"],
+["十五","じゅうご","juugo","15","じゅうごばん","Number fifteen.","Numbers"],
+["十六","じゅうろく","juuroku","16","じゅうろくばん","Number sixteen.","Numbers"],
+["十七","じゅうなな","juunana","17","じゅうななばん","Number seventeen.","Numbers"],
+["十八","じゅうはち","juuhachi","18","じゅうはちばん","Number eighteen.","Numbers"],
+["十九","じゅうきゅう","juukyuu","19","じゅうきゅうばん","Number nineteen.","Numbers"],
+["二十","にじゅう","nijuu","20","にじゅうばん","Number twenty.","Numbers"],
+["三十","さんじゅう","sanjuu","30","さんじゅうばん","Number thirty.","Numbers"],
+["四十","よんじゅう","yonjuu","40","よんじゅうばん","Number forty.","Numbers"],
+["五十","ごじゅう","gojuu","50","ごじゅうばん","Number fifty.","Numbers"],
+["六十","ろくじゅう","rokujuu","60","ろくじゅうばん","Number sixty.","Numbers"],
+["七十","ななじゅう","nanajuu","70","ななじゅうばん","Number seventy.","Numbers"],
+["八十","はちじゅう","hachijuu","80","はちじゅうばん","Number eighty.","Numbers"],
+["九十","きゅうじゅう","kyuujuu","90","きゅうじゅうばん","Number ninety.","Numbers"],
+["百","ひゃく","hyaku","100","ひゃく","One hundred.","Numbers"],
+["千","せん","sen","1,000","せん","One thousand.","Numbers"],
+["一万","いちまん","ichiman","10,000","いちまん","Ten thousand.","Numbers"]
 ];
 
 let section="words",index=Number(localStorage.jwIndex||0),themeIndex=Number(localStorage.jwTheme||0),hours=Number(localStorage.jwHours||4),currentVoice=localStorage.jwVoice||"regular";
@@ -382,8 +418,8 @@ function themeApply(){
 }
 function setSection(s){
  section=s;
- ["navWords","navHira","navKata","navFlash"].forEach(id=>document.getElementById(id).classList.remove("active"));
- document.getElementById(s==="words"?"navWords":s==="hiragana"?"navHira":s==="katakana"?"navKata":"navFlash").classList.add("active");
+ ["navWords","navHira","navKata","navNumbers","navFlash"].forEach(id=>document.getElementById(id).classList.remove("active"));
+ document.getElementById(s==="words"?"navWords":s==="hiragana"?"navHira":s==="katakana"?"navKata":s==="numbers"?"navNumbers":"navFlash").classList.add("active");
  document.getElementById("learnCard").classList.toggle("hidden",s==="flash");
  document.getElementById("flashCard").classList.toggle("hidden",s!=="flash");
  if(s==="flash")renderFlash(); else renderLearn();
@@ -392,14 +428,22 @@ function renderLearn(){
  const card=document.getElementById("learnCard");card.classList.remove("fade");void card.offsetWidth;card.classList.add("fade");themeApply();
  let item,sub,rom,meaning,ex,en,cat;
  if(section==="words"){let w=words[index%words.length];item=w[0];sub=w[1];rom=w[2];meaning=w[3];ex=w[4];en=w[5];cat=w[6]}
+ else if(section==="numbers"){let w=numbers[index%numbers.length];item=w[0];sub=w[1];rom=w[2];meaning=w[3];ex=w[4];en=w[5];cat=w[6]}
  else {let arr=section==="hiragana"?hira:kata,w=arr[index%arr.length];item=w[0];sub=w[1];rom=w[1];meaning=section==="hiragana"?"Hiragana character":"Katakana character";ex=`${w[0]} = ${w[1]}`;en="Say the sound aloud.";cat=section.toUpperCase()}
  document.getElementById("category").textContent=cat;document.getElementById("mainchar").textContent=item;document.getElementById("subchar").textContent=section==="words"?sub:"Romaji: "+sub;
  document.getElementById("roman").textContent=section==="words"?rom:"Japanese syllabary";
  document.getElementById("meaning").textContent=meaning;
- document.getElementById("example").textContent=sentenceMode==="hiragana" ? toHiragana(ex) : ex;
- document.getElementById("exampleEn").textContent=en;
- document.getElementById("sentenceScriptBtn").textContent=sentenceMode==="hiragana" ? "漢字 / Japanese" : "あ Hiragana";
- document.querySelectorAll(".voice button").forEach(b=>b.classList.toggle("active",b.dataset.mode===currentVoice));
+ const simpleSection=(section==="hiragana"||section==="katakana");
+ document.getElementById("example").textContent=simpleSection ? "" : (sentenceMode==="hiragana" ? toHiragana(ex) : ex);
+ document.getElementById("exampleEn").textContent=simpleSection ? "" : en;
+ document.querySelector(".sentence-tools").style.display=simpleSection ? "none" : "grid";
+ document.querySelectorAll(".voice button").forEach(b=>{
+   b.style.display=(simpleSection && b.dataset.mode==="syllable") ? "none" : "";
+   b.classList.toggle("active",b.dataset.mode===currentVoice);
+ });
+ if(simpleSection && currentVoice==="syllable") currentVoice="slow";
+ localStorage.jwVoice=currentVoice;
+ localStorage.jwIndex=index;
  localStorage.jwIndex=index;localStorage.jwLast=Date.now();
 }
 
@@ -436,13 +480,14 @@ function speak(mode){
  speechSynthesis.cancel();
  if(mode==="syllable"){
   [...text].forEach((ch,i)=>setTimeout(()=>{let u=new SpeechSynthesisUtterance(ch);u.lang="ja-JP";u.rate=.48;speechSynthesis.speak(u)},i*650));
- }else{let u=new SpeechSynthesisUtterance(text);u.lang="ja-JP";u.rate=mode==="slow"?.32:.78;speechSynthesis.speak(u)}
+ }else{let u=new SpeechSynthesisUtterance(text);u.lang="ja-JP";u.rate=mode==="slow"?.32:.82;speechSynthesis.speak(u)}
 }
 function auto(){if(section!=="flash"&&Date.now()-Number(localStorage.jwLast||0)>=hours*3600000)nextLearning()}
 
 function flashData(){
  if(flashSet==="hira")return hira.map(x=>({q:x[0],a:x[1],id:"h:"+x[0]}));
  if(flashSet==="kata")return kata.map(x=>({q:x[0],a:x[1],id:"k:"+x[0]}));
+ if(flashSet==="numbers")return numbers.map(x=>({q:x[0],a:x[3]+" — "+x[1],id:"n:"+x[0]}));
  return words.map(x=>({q:x[0],a:x[3],id:"w:"+x[0]}));
 }
 function stat(id){return stats[id]||{r:0,w:0}}
@@ -461,7 +506,7 @@ function renderFlash(){
    </div>`;
  }
  f.innerHTML=`
- <div class="flash-top"><span>FLASHCARD • ${flashSet==="words"?"WORDS":flashSet.toUpperCase()}</span><span>✓ ${s.r} &nbsp; × ${s.w}</span></div>
+ <div class="flash-top"><span>FLASHCARD • ${flashSet==="words"?"WORDS":flashSet==="hira"?"HIRAGANA":flashSet==="kata"?"KATAKANA":"NUMBERS"}</span><span>✓ ${s.r} &nbsp; × ${s.w}</span></div>
  <div class="flash-prompt"><div class="flash-kind">What is this?</div><div class="flash-big">${escapeHtml(item.q)}</div>${flashAnswered?`<div class="flash-answer">${escapeHtml(item.a)}</div>`:""}</div>
  <div class="flash-listen"><button class="hear-card" onclick="speakFlash()">🔊 Hear this card</button></div>
  <div class="section-title">ANSWER MODE</div>
@@ -472,7 +517,7 @@ function renderFlash(){
  <div id="flashInput" style="margin-top:9px">${flashAnswered?feedback:flashType==="choice"?`<div class="choices">${options.map(o=>`<button onclick="answerChoice('${escapeAttr(o)}','${escapeAttr(item.a)}','${item.id}')">${escapeHtml(o)}</button>`).join("")}</div>`:flashType==="typing"?`<input id="typeAnswer" class="typebox" placeholder="Type the answer"><button class="submit" style="width:100%;margin-top:8px" onclick="answerTyping('${item.id}','${escapeAttr(item.a)}')">Check answer</button>`:`<button class="submit" style="width:100%" onclick="speechAnswer('${item.id}','${escapeAttr(item.a)}')">🎙️ Speak your English answer</button>`}</div>
  ${flashAnswered?"":`<div class="flash-actions"><button onclick="nextFlash()">Skip</button><button onclick="revealFlash('${item.id}')">Reveal answer</button></div>`}
 
- <div class="selectbox"><label>FLASHCARD SET</label><select onchange="flashSet=this.value;flashIndex=0;flashAnswered=false;renderFlash()"><option value="words" ${flashSet==="words"?"selected":""}>Japanese words</option><option value="hira" ${flashSet==="hira"?"selected":""}>Hiragana</option><option value="kata" ${flashSet==="kata"?"selected":""}>Katakana</option></select></div>
+ <div class="selectbox"><label>FLASHCARD SET</label><select onchange="flashSet=this.value;flashIndex=0;flashAnswered=false;renderFlash()"><option value="words" ${flashSet==="words"?"selected":""}>Japanese words</option><option value="hira" ${flashSet==="hira"?"selected":""}>Hiragana</option><option value="kata" ${flashSet==="kata"?"selected":""}>Katakana</option><option value="numbers" ${flashSet==="numbers"?"selected":""}>Numbers</option></select></div>
  <div class="small-note">Your correct/incorrect count is saved separately for each item.</div>`;
 }
 
@@ -496,11 +541,30 @@ function speechAnswer(id,answer){
 }
 function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
 function escapeAttr(s){return s.replace(/\\/g,"\\\\").replace(/'/g,"\\'")}
+function resetStats(){
+ if(!confirm("Reset all learning statistics?\n\nThis will erase every correct/incorrect count for words, Hiragana, Katakana, and numbers.")) return;
+ stats={};localStorage.removeItem("jwStats");openStats();
+}
+function statLine(label,id){
+ const s=stat(id),total=s.r+s.w,accuracy=total?Math.round((s.r/total)*100):0;
+ return `<div class="stat-row"><div class="stat-name"><strong>${escapeHtml(label)}</strong><span>${total?accuracy+"% accuracy":"Not practiced"}</span></div><div class="stat-counts"><span class="correct">Correct <b>${s.r}</b></span><span class="wrong">Wrong <b>${s.w}</b></span></div></div>`;
+}
 function openStats(){
- const vals=Object.values(stats),right=vals.reduce((n,s)=>n+s.r,0),wrong=vals.reduce((n,s)=>n+s.w,0);
- document.getElementById("statsText").textContent=`${right+wrong} answers recorded • ${right} correct • ${wrong} wrong.`;
- document.getElementById("statsList").innerHTML=words.map(w=>{let s=stat("w:"+w[0]);return `<div style="padding:9px 0;border-bottom:1px solid #ffffff18"><b>${w[0]}</b> ${w[3]} <span style="float:right;color:#c7cbd5">✓${s.r} ×${s.w}</span></div>`}).join("");
- document.getElementById("modal").classList.remove("hidden")
+ const all=[];
+ words.forEach(w=>all.push({group:"Vocabulary",label:`${w[0]} — ${w[3]}`,id:"w:"+w[0]}));
+ hira.forEach(w=>all.push({group:"Hiragana",label:`${w[0]} — ${w[1]}`,id:"h:"+w[0]}));
+ kata.forEach(w=>all.push({group:"Katakana",label:`${w[0]} — ${w[1]}`,id:"k:"+w[0]}));
+ numbers.forEach(w=>all.push({group:"Numbers",label:`${w[0]} — ${w[3]}`,id:"n:"+w[0]}));
+ const vals=Object.values(stats),right=vals.reduce((n,s)=>n+s.r,0),wrong=vals.reduce((n,s)=>n+s.w,0),total=right+wrong;
+ const accuracy=total?Math.round(right/total*100):0;
+ document.getElementById("statsText").innerHTML=`<div class="stats-summary"><div><b>${total}</b><span>Total attempts</span></div><div><b>${right}</b><span>Correct</span></div><div><b>${wrong}</b><span>Wrong</span></div><div><b>${accuracy}%</b><span>Accuracy</span></div></div>`;
+ let out="",current="";
+ all.forEach(x=>{
+   if(x.group!==current){current=x.group;out+=`<div class="stats-group">${current}</div>`}
+   out+=statLine(x.label,x.id);
+ });
+ document.getElementById("statsList").innerHTML=out;
+ document.getElementById("modal").classList.remove("hidden");
 }
 function closeStats(){document.getElementById("modal").classList.add("hidden")}
 themeApply();renderLearn();setInterval(auto,30000);
